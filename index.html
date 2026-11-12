@@ -251,9 +251,56 @@ function toggleButton(type) {
   const checked = document.getElementById(type === 'robux' ? 'agreeRobux' : 'agreeApk').checked;
   document.getElementById(type + 'Form').style.display = checked ? 'block' : 'none';
 }
+
+const WHATSAPP_ADMIN = "6283899883913";
+
 function sendOrder(type) {
-  alert('Tampilan awal website berhasil! Fitur penyimpanan pesanan, harga, dan WhatsApp akan kita hubungkan pada tahap berikutnya.');
+  let message = "";
+
+  if (type === "robux") {
+    const username = document.getElementById("username").value.trim();
+    const displayname = document.getElementById("displayname").value.trim();
+    const amount = document.getElementById("robuxAmount").value;
+
+    if (!username || !displayname || !amount) {
+      alert("Lengkapi semua data order Robux terlebih dahulu.");
+      return;
+    }
+
+    message = "ORDER ROBUX - SYIINYOURHEART\n\n" +
+      "Username: " + username + "\n" +
+      "Display Name: " + displayname + "\n" +
+      "Jumlah: " + amount;
+  }
+
+  if (type === "apk") {
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const device = document.getElementById("device").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const app = document.getElementById("appName").value;
+    const duration = document.getElementById("duration").value;
+
+    if (!name || !phone || !device || !location || !app || !duration) {
+      alert("Lengkapi semua data APK Premium terlebih dahulu.");
+      return;
+    }
+
+    message = "ORDER APK PREMIUM - SYIINYOURHEART\n\n" +
+      "Nama: " + name + "\n" +
+      "No. HP: " + phone + "\n" +
+      "Device: " + device + "\n" +
+      "Lokasi: " + location + "\n" +
+      "Nama APK: " + app + "\n" +
+      "Durasi: " + duration;
+  }
+
+  const url = "https://wa.me/" + WHATSAPP_ADMIN +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
 }
+
 </script>
 </body>
 </html>
