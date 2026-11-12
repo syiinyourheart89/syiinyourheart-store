@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syiinyourheart — Digital Store</title>
+<style>
+:root {
+  --pink:#e9a9c5;
+  --pink-dark:#b96f94;
+  --cream:#fffaf5;
+  --yellow:#fff0c7;
+  --text:#594653;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+header {
+  padding:22px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  border-bottom:1px solid #f4e4eb;
+}
+.logo {font-size:23px;font-weight:bold;color:var(--pink-dark)}
+nav a {
+  margin-left:18px;
+  color:var(--text);
+  text-decoration:none;
+  font-size:14px;
+}
+.hero {
+  text-align:center;
+  padding:75px 20px;
+  background:linear-gradient(135deg,#fce5ef,#fff5dc);
+}
+.hero h1 {font-size:38px;margin:10px}
+.hero p {color:#876b79}
+button {
+  border:0;
+  border-radius:25px;
+  padding:13px 22px;
+  background:var(--pink-dark);
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+button:disabled {opacity:.45;cursor:not-allowed}
+main {max-width:850px;margin:40px auto;padding:0 18px}
+.section-title {text-align:center;margin-bottom:25px}
+.services {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.card {
+  background:white;
+  border:1px solid #f1dce6;
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
+}
+.card h3 {color:var(--pink-dark)}
+.panel {
+  display:none;
+  margin-top:25px;
+  padding:25px;
+  background:white;
+  border:1px solid #f1dce6;
+  border-radius:18px;
+}
+.panel.active {display:block}
+.rules {
+  background:#fff4f8;
+  border-radius:13px;
+  padding:18px;
+  line-height:1.7;
+  font-size:14px;
+}
+label {display:block;margin-top:15px;font-weight:bold;font-size:14px}
+input,select {
+  width:100%;
+  padding:12px;
+  margin-top:7px;
+  border:1px solid #e8d5df;
+  border-radius:10px;
+  background:white;
+}
+.agree {display:flex;gap:10px;align-items:flex-start;margin:18px 0}
+.agree input {width:auto;margin-top:3px}
+.agree label {margin:0;font-weight:normal;line-height:1.5}
+footer {
+  text-align:center;
+  padding:30px;
+  background:white;
+  color:#947b88;
+  margin-top:60px;
+  font-size:13px;
+}
+.small {font-size:12px;color:#927d88}
+@media(max-width:600px) {
+  header {padding:18px;flex-direction:column;gap:12px}
+  nav a {margin:0 7px}
+  .hero h1 {font-size:29px}
+  .services {grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">୨ৎ Syiinyourheart</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Layanan</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <p>♡ WELCOME TO ♡</p>
+  <h1>Syiinyourheart</h1>
+  <p>cute price • happy service</p>
+  <a href="#services"><button>Explore Services</button></a>
+</section>
+
+<main id="services">
+  <div class="section-title">
+    <h2>୨ৎ Our Services</h2>
+    <p class="small">Pilih layanan yang ingin kamu pesan.</p>
+  </div>
+
+  <div class="services">
+    <div class="card">
+      <h3>♡ Antar Robux</h3>
+      <p>Top up Robux melalui username Roblox.</p>
+      <button onclick="showService('robux')">Pilih Robux</button>
+    </div>
+    <div class="card">
+      <h3>♡ APK Premium</h3>
+      <p>Langganan aplikasi premium favoritmu.</p>
+      <button onclick="showService('apk')">Pilih APK Premium</button>
+    </div>
+  </div>
+
+  <section class="panel" id="robux">
+    <h2>♡ Syarat & Ketentuan Robux</h2>
+    <div class="rules">
+      <ol>
+        <li>Setelah pembayaran, tidak ada refund.</li>
+        <li>Cek limit harian dan bulanan. Jika tidak tahu cara mengeceknya, tanyakan kepada admin.</li>
+        <li>Wajib mengaktifkan V2L untuk pembelian di atas 500 Robux. Limit yang diinformasikan: 500 Robux per hari tanpa V2L dan hingga 5.000 Robux per hari dengan V2L.</li>
+        <li>Jika sudah mengaktifkan V2L tetapi masih terkena limit, periksa kembali ketentuan sebelumnya.</li>
+        <li>Akun Roblox wajib berusia minimal 18 tahun.</li>
+        <li>Estimasi pengerjaan 1–20 menit. Mohon tidak spam chat. Untuk pembelian instan, gunakan marketplace resmi Roblox.</li>
+      </ol>
+    </div>
+    <div class="agree">
+      <input type="checkbox" id="agreeRobux" onchange="toggleButton('robux')">
+      <label for="agreeRobux">Saya sudah membaca dan menyetujui seluruh ketentuan Robux.</label>
+    </div>
+    <div id="robuxForm" style="display:none">
+      <h3>Form Order Robux</h3>
+      <label>Username Roblox</label>
+      <input id="username" placeholder="Masukkan username Roblox">
+      <label>Display Name</label>
+      <input id="displayname" placeholder="Masukkan display name Roblox">
+      <label>Jumlah Robux</label>
+      <select id="robuxAmount">
+        <option value="">Pilih jumlah Robux</option>
+        <option>10 Robux</option>
+        <option>50 Robux</option>
+        <option>100 Robux</option>
+        <option>200 Robux</option>
+        <option>300 Robux</option>
+        <option>500 Robux</option>
+        <option>Jumlah lainnya — tanyakan admin</option>
+      </select>
+      <p class="small">Harga akan mengikuti pricelist resmi toko.</p>
+      <button onclick="sendOrder('robux')">Lanjutkan</button>
+    </div>
+  </section>
+
+  <section class="panel" id="apk">
+    <h2>♡ Syarat & Ketentuan APK Premium</h2>
+    <div class="rules">
+      <ol>
+        <li>25–28 hari dihitung sebagai 1 bulan.</li>
+        <li>5–7 hari dihitung sebagai 1 minggu.</li>
+        <li>Wajib mengirim screenshot setelah berhasil login.</li>
+        <li>Jika login membutuhkan OTP, wajib membuat janji waktu dengan admin.</li>
+        <li>Perbaikan dapat memakan waktu hingga 1 minggu. Selama perbaikan, durasi langganan tidak dihitung dan akan ditambahkan sesuai waktu perbaikan.</li>
+        <li>Dilarang logout setelah login tanpa konfirmasi admin. Logout tanpa konfirmasi dapat menyebabkan akses atau garansi hangus.</li>
+        <li>Pembelian non-private memiliki risiko terkena limit screen.</li>
+      </ol>
+    </div>
+    <div class="agree">
+      <input type="checkbox" id="agreeApk" onchange="toggleButton('apk')">
+      <label for="agreeApk">Saya sudah membaca dan menyetujui seluruh ketentuan APK Premium.</label>
+    </div>
+    <div id="apkForm" style="display:none">
+      <h3>Form Order APK Premium</h3>
+      <label>Nama</label>
+      <input id="customerName" placeholder="Nama pelanggan">
+      <label>Nomor HP</label>
+      <input id="phone" type="tel" placeholder="Nomor HP aktif">
+      <label>Device / HP yang digunakan</label>
+      <input id="device" placeholder="Contoh: Samsung Galaxy A15">
+      <label>Lokasi tempat tinggal</label>
+      <input id="location" placeholder="Contoh: Bogor, Jawa Barat">
+      <label>Nama APK</label>
+      <select id="appName">
+        <option value="">Pilih aplikasi</option>
+        <option>Canva Premium</option>
+        <option>CapCut Premium</option>
+        <option>Netflix</option>
+        <option>Aplikasi lainnya — request admin</option>
+      </select>
+      <label>Durasi</label>
+      <select id="duration">
+        <option value="">Pilih durasi</option>
+        <option>1 Minggu</option>
+        <option>1 Bulan</option>
+        <option>3 Bulan</option>
+        <option>Durasi lainnya — tanyakan admin</option>
+      </select>
+      <button onclick="sendOrder('apk')">Lanjutkan</button>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <h3>Syiinyourheart ♡</h3>
+  <p>cute price • happy service</p>
+  <p>Thank you for trusting our little shop!</p>
+</footer>
+
+<script>
+function showService(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function toggleButton(type) {
+  const checked = document.getElementById(type === 'robux' ? 'agreeRobux' : 'agreeApk').checked;
+  document.getElementById(type + 'Form').style.display = checked ? 'block' : 'none';
+}
+function sendOrder(type) {
+  alert('Tampilan awal website berhasil! Fitur penyimpanan pesanan, harga, dan WhatsApp akan kita hubungkan pada tahap berikutnya.');
+}
+</script>
+</body>
+</html>
