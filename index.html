@@ -1,306 +1,52 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Syiinyourheart — Digital Store</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffad43"><title>Syiinyourheart — Digital Store</title>
 <style>
-:root {
-  --pink:#e9a9c5;
-  --pink-dark:#b96f94;
-  --cream:#fffaf5;
-  --yellow:#fff0c7;
-  --text:#594653;
-}
-* {box-sizing:border-box}
-body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--cream);
-  color:var(--text);
-}
-header {
-  padding:22px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:white;
-  border-bottom:1px solid #f4e4eb;
-}
-.logo {font-size:23px;font-weight:bold;color:var(--pink-dark)}
-nav a {
-  margin-left:18px;
-  color:var(--text);
-  text-decoration:none;
-  font-size:14px;
-}
-.hero {
-  text-align:center;
-  padding:75px 20px;
-  background:linear-gradient(135deg,#fce5ef,#fff5dc);
-}
-.hero h1 {font-size:38px;margin:10px}
-.hero p {color:#876b79}
-button {
-  border:0;
-  border-radius:25px;
-  padding:13px 22px;
-  background:var(--pink-dark);
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
-}
-button:disabled {opacity:.45;cursor:not-allowed}
-main {max-width:850px;margin:40px auto;padding:0 18px}
-.section-title {text-align:center;margin-bottom:25px}
-.services {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-.card {
-  background:white;
-  border:1px solid #f1dce6;
-  border-radius:18px;
-  padding:25px;
-  text-align:center;
-}
-.card h3 {color:var(--pink-dark)}
-.panel {
-  display:none;
-  margin-top:25px;
-  padding:25px;
-  background:white;
-  border:1px solid #f1dce6;
-  border-radius:18px;
-}
-.panel.active {display:block}
-.rules {
-  background:#fff4f8;
-  border-radius:13px;
-  padding:18px;
-  line-height:1.7;
-  font-size:14px;
-}
-label {display:block;margin-top:15px;font-weight:bold;font-size:14px}
-input,select {
-  width:100%;
-  padding:12px;
-  margin-top:7px;
-  border:1px solid #e8d5df;
-  border-radius:10px;
-  background:white;
-}
-.agree {display:flex;gap:10px;align-items:flex-start;margin:18px 0}
-.agree input {width:auto;margin-top:3px}
-.agree label {margin:0;font-weight:normal;line-height:1.5}
-footer {
-  text-align:center;
-  padding:30px;
-  background:white;
-  color:#947b88;
-  margin-top:60px;
-  font-size:13px;
-}
-.small {font-size:12px;color:#927d88}
-@media(max-width:600px) {
-  header {padding:18px;flex-direction:column;gap:12px}
-  nav a {margin:0 7px}
-  .hero h1 {font-size:29px}
-  .services {grid-template-columns:1fr}
-}
-</style>
-</head>
+:root{--o:#ff9e38;--y:#ffe79a;--p:#f73591;--p2:#ffb4d0;--c:#fffaf0;--b:#79321f;--ink:#603c37}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 8%,#ffe58a,transparent 25%),radial-gradient(circle at 95% 28%,#ffd0e2,transparent 25%),linear-gradient(145deg,#ffb34e,#ffe5a1 50%,#ffb2cc)}
+a{color:inherit;text-decoration:none}button,input{font:inherit}.top{position:sticky;top:0;z-index:10;background:#fffaf0ed;backdrop-filter:blur(10px);padding:12px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #ffdb83}.brand{font-size:25px;font-weight:1000;color:var(--p);text-shadow:1px 2px white}.brand small{display:block;text-align:center;font-size:10px;letter-spacing:2px;color:var(--b);text-shadow:none}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:13px;font-weight:900;padding:9px 12px;border-radius:25px}.nav a:hover{background:#ffe6a6}
+.wrap{width:min(1100px,94%);margin:24px auto 45px}.hero{position:relative;overflow:hidden;text-align:center;padding:45px 18px 32px;border:5px solid #ffdb83;border-radius:32px;background:linear-gradient(135deg,#ffb33f,#ffdf82 50%,#ff9cba);box-shadow:0 9px 25px #a84e2520}.hero:before,.hero:after{content:"✦";position:absolute;color:#fff5b8;font-size:58px;text-shadow:0 3px #ed9b38}.hero:before{left:22px;top:15px}.hero:after{right:22px;bottom:12px}.hero .eyebrow{font-weight:1000;letter-spacing:3px;color:#a84831}.hero h1{font-size:clamp(40px,7vw,72px);line-height:1;margin:12px 0;color:var(--p);-webkit-text-stroke:1px white;text-shadow:0 5px white,0 8px #dc6b48}.hero p{font-weight:900;color:#783b2c}.decor{font-size:25px;letter-spacing:8px;margin-top:17px}
+.shortcuts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:20px 0}.shortcut{background:#fffaf2;border:3px solid #ffd16c;border-radius:22px;padding:18px;text-align:center;box-shadow:0 8px 20px #a84e2518}.shortcut:nth-child(2){border-color:#ffafd0}.emoji{font-size:34px}.shortcut h2{margin:5px;color:var(--b)}.shortcut p{font-size:13px}.btn{display:inline-block;border:0;border-radius:28px;padding:12px 21px;background:var(--p);color:white;font-weight:1000;box-shadow:0 4px #c92b70;cursor:pointer}.btn.orange{background:var(--o);box-shadow:0 4px #d87921;color:#71351e}
+.section{margin:24px 0;background:#fffdf8;border:5px solid #ffe28f;border-radius:30px;padding:clamp(16px,3vw,30px);box-shadow:0 9px 25px #a84e2520;position:relative}.section:before{content:"✧ ♡ ✧";position:absolute;right:20px;top:12px;color:#ff9fc4;font-size:20px}.head{text-align:center;margin-bottom:22px}.head .mini{font-weight:1000;color:#d16a39;letter-spacing:3px;font-size:12px}.head h2{font-size:clamp(28px,4vw,42px);color:var(--p);margin:7px 0;text-shadow:1px 2px #ffe0a0}.head p{margin:0;color:#98553e;font-weight:900}.stock{display:inline-block;margin-top:12px;background:#eff9ef;border:1px solid #b9e5c8;color:#247b50;border-radius:25px;padding:7px 12px;font-size:12px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.robux{position:relative;border:2px solid #ff9fc5;border-radius:24px;padding:14px 8px;background:linear-gradient(145deg,#fff,#fff0f4);text-align:center;color:var(--b);box-shadow:0 4px #ffd2df;min-height:108px;cursor:pointer}.robux:before{content:"🎀";position:absolute;left:7px;top:-13px;font-size:22px}.robux:after{content:"✦";position:absolute;right:8px;top:7px;color:#ffae25;font-size:21px}.robux.selected{border:3px solid var(--p);background:#ffe0ed;box-shadow:0 4px #e94c91}.check{display:none;position:absolute;right:7px;top:-13px;background:var(--p);color:white;border:3px solid white;border-radius:50%;width:28px;height:28px;place-items:center}.selected .check{display:grid}.coin{display:block;font-size:20px}.amount{font-size:clamp(15px,2vw,20px);font-weight:1000}.price{display:block;margin:7px auto 0;background:#fff2c9;border:2px solid #ffd77d;color:var(--p);border-radius:22px;padding:5px 8px;font-size:clamp(14px,1.8vw,18px);font-weight:1000;width:fit-content;max-width:100%}.summary{text-align:center;margin:22px auto 15px;padding:13px;border:2px dashed #ffb34b;border-radius:17px;background:#fff7d9;font-weight:1000;color:#8b3a27}.summary strong{color:var(--p)}
+.rules{background:#fff2d9;border:1px solid #ffdb9a;border-radius:17px;padding:15px;line-height:1.65;font-size:13px}.rules h3{margin:0 0 8px;color:#a64c31}.rules ol{padding-left:20px;margin:0}.agree{display:flex;gap:9px;align-items:flex-start;margin:13px 0;font-size:13px;font-weight:900}.agree input{margin-top:3px;accent-color:var(--p)}
+.form{background:#fff7f1;border:2px solid #ffd0a0;border-radius:20px;padding:17px;margin:14px auto;max-width:720px}.form h3{margin-top:0;color:#d83d87}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:13px;font-weight:900;margin:7px 0;color:#824331}.field input{width:100%;padding:12px;border:1.5px solid #efbfd0;border-radius:12px;background:white;outline-color:var(--p)}.hint{font-size:12px;color:#947367}.result{margin-top:9px;font-size:13px}.found{display:flex;align-items:center;gap:10px;background:#eff9ef;color:#286d49;padding:10px;border-radius:12px}.found img{width:45px;height:45px;border-radius:50%}.error{color:#b52e48}
+.apkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.apkcard{border:2px solid #ffb0ce;border-radius:22px;overflow:hidden;background:#fff9f5;box-shadow:0 4px #ffd5df}.apktitle{padding:12px;background:#ffb2cf;text-align:center;color:#713e42;font-weight:1000;font-size:20px;letter-spacing:1px}.apkcard:nth-child(even) .apktitle{background:#ffdb7f}.apkbody{padding:13px}.group{margin-bottom:12px}.group h4{margin:0 0 7px;text-align:center;color:#df438c;text-decoration:underline;text-underline-offset:3px}.option{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:9px 10px;margin:6px 0;border:1.5px solid #f4c4d5;border-radius:12px;background:white;color:#633d38;font-weight:900;font-size:13px;cursor:pointer}.option b{color:var(--p);white-space:nowrap}.option:hover{border-color:var(--p);background:#fff0f6}.empty{text-align:center;color:#96786c;font-size:13px;padding:12px}.contact{text-align:center;background:#fff7e8;border:3px dashed #ffc75e;border-radius:22px;padding:20px;margin-top:23px}footer{text-align:center;padding:22px;color:#754332;font-size:13px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.apkgrid{grid-template-columns:1fr}}@media(max-width:520px){.top{flex-direction:column}.shortcuts{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.hero{padding:35px 12px}.section{border-width:3px}}
+</style></head>
 <body>
-
-<header>
-  <div class="logo">୨ৎ Syiinyourheart</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Layanan</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero" id="home">
-  <p>♡ WELCOME TO ♡</p>
-  <h1>Syiinyourheart</h1>
-  <p>cute price • happy service</p>
-  <a href="#services"><button>Explore Services</button></a>
-</section>
-
-<main id="services">
-  <div class="section-title">
-    <h2>୨ৎ Our Services</h2>
-    <p class="small">Pilih layanan yang ingin kamu pesan.</p>
-  </div>
-
-  <div class="services">
-    <div class="card">
-      <h3>♡ Antar Robux</h3>
-      <p>Top up Robux melalui username Roblox.</p>
-      <button onclick="showService('robux')">Pilih Robux</button>
-    </div>
-    <div class="card">
-      <h3>♡ APK Premium</h3>
-      <p>Langganan aplikasi premium favoritmu.</p>
-      <button onclick="showService('apk')">Pilih APK Premium</button>
-    </div>
-  </div>
-
-  <section class="panel" id="robux">
-    <h2>♡ Syarat & Ketentuan Robux</h2>
-    <div class="rules">
-      <ol>
-        <li>Setelah pembayaran, tidak ada refund.</li>
-        <li>Cek limit harian dan bulanan. Jika tidak tahu cara mengeceknya, tanyakan kepada admin.</li>
-        <li>Wajib mengaktifkan V2L untuk pembelian di atas 500 Robux. Limit yang diinformasikan: 500 Robux per hari tanpa V2L dan hingga 5.000 Robux per hari dengan V2L.</li>
-        <li>Jika sudah mengaktifkan V2L tetapi masih terkena limit, periksa kembali ketentuan sebelumnya.</li>
-        <li>Akun Roblox wajib berusia minimal 18 tahun.</li>
-        <li>Estimasi pengerjaan 1–20 menit. Mohon tidak spam chat. Untuk pembelian instan, gunakan marketplace resmi Roblox.</li>
-      </ol>
-    </div>
-    <div class="agree">
-      <input type="checkbox" id="agreeRobux" onchange="toggleButton('robux')">
-      <label for="agreeRobux">Saya sudah membaca dan menyetujui seluruh ketentuan Robux.</label>
-    </div>
-    <div id="robuxForm" style="display:none">
-      <h3>Form Order Robux</h3>
-      <label>Username Roblox</label>
-      <input id="username" placeholder="Masukkan username Roblox">
-      <label>Display Name</label>
-      <input id="displayname" placeholder="Masukkan display name Roblox">
-      <label>Jumlah Robux</label>
-      <select id="robuxAmount">
-        <option value="">Pilih jumlah Robux</option>
-        <option>10 Robux</option>
-        <option>50 Robux</option>
-        <option>100 Robux</option>
-        <option>200 Robux</option>
-        <option>300 Robux</option>
-        <option>500 Robux</option>
-        <option>Jumlah lainnya — tanyakan admin</option>
-      </select>
-      <p class="small">Harga akan mengikuti pricelist resmi toko.</p>
-      <button onclick="sendOrder('robux')">Lanjutkan</button>
-    </div>
-  </section>
-
-  <section class="panel" id="apk">
-    <h2>♡ Syarat & Ketentuan APK Premium</h2>
-    <div class="rules">
-      <ol>
-        <li>25–28 hari dihitung sebagai 1 bulan.</li>
-        <li>5–7 hari dihitung sebagai 1 minggu.</li>
-        <li>Wajib mengirim screenshot setelah berhasil login.</li>
-        <li>Jika login membutuhkan OTP, wajib membuat janji waktu dengan admin.</li>
-        <li>Perbaikan dapat memakan waktu hingga 1 minggu. Selama perbaikan, durasi langganan tidak dihitung dan akan ditambahkan sesuai waktu perbaikan.</li>
-        <li>Dilarang logout setelah login tanpa konfirmasi admin. Logout tanpa konfirmasi dapat menyebabkan akses atau garansi hangus.</li>
-        <li>Pembelian non-private memiliki risiko terkena limit screen.</li>
-      </ol>
-    </div>
-    <div class="agree">
-      <input type="checkbox" id="agreeApk" onchange="toggleButton('apk')">
-      <label for="agreeApk">Saya sudah membaca dan menyetujui seluruh ketentuan APK Premium.</label>
-    </div>
-    <div id="apkForm" style="display:none">
-      <h3>Form Order APK Premium</h3>
-      <label>Nama</label>
-      <input id="customerName" placeholder="Nama pelanggan">
-      <label>Nomor HP</label>
-      <input id="phone" type="tel" placeholder="Nomor HP aktif">
-      <label>Device / HP yang digunakan</label>
-      <input id="device" placeholder="Contoh: Samsung Galaxy A15">
-      <label>Lokasi tempat tinggal</label>
-      <input id="location" placeholder="Contoh: Bogor, Jawa Barat">
-      <label>Nama APK</label>
-      <select id="appName">
-        <option value="">Pilih aplikasi</option>
-        <option>Canva Premium</option>
-        <option>CapCut Premium</option>
-        <option>Netflix</option>
-        <option>Aplikasi lainnya — request admin</option>
-      </select>
-      <label>Durasi</label>
-      <select id="duration">
-        <option value="">Pilih durasi</option>
-        <option>1 Minggu</option>
-        <option>1 Bulan</option>
-        <option>3 Bulan</option>
-        <option>Durasi lainnya — tanyakan admin</option>
-      </select>
-      <button onclick="sendOrder('apk')">Lanjutkan</button>
-    </div>
-  </section>
-</main>
-
-<footer id="contact">
-  <h3>Syiinyourheart ♡</h3>
-  <p>cute price • happy service</p>
-  <p>Thank you for trusting our little shop!</p>
-</footer>
-
+<header class="top"><a class="brand" href="#home">୨ৎ Syiinyourheart<small>CUTE PRICE • HAPPY SERVICE</small></a><nav class="nav"><a href="#home">Home</a><a href="#robux">Robux</a><a href="#apk">APK Premium</a><a href="#contact">Contact</a></nav></header>
+<main class="wrap">
+<section class="hero" id="home"><p class="eyebrow">♡ WELCOME TO OUR LITTLE SHOP ♡</p><h1>Syiinyourheart</h1><p>Top up Robux & premium apps with a sprinkle of happiness!</p><a class="btn" href="#services">EXPLORE SERVICES ♡</a><div class="decor">🎀 ⭐ 🐰 💗 🧸 ✨</div></section>
+<section class="shortcuts" id="services"><article class="shortcut"><div class="emoji">🎮</div><h2>Robux Top Up</h2><p>Pilih nominal Robux favoritmu.</p><a class="btn" href="#robux">Lihat Pricelist</a></article><article class="shortcut"><div class="emoji">🎀</div><h2>APK Premium</h2><p>Pilih aplikasi dan paket langganan.</p><a class="btn orange" href="#apk">Lihat Paket APK</a></article></section>
+<section class="section" id="robux"><div class="head"><div class="mini">୨ৎ TOP UP ROBLOX ୨ৎ</div><h2>🎮 Robux Price List</h2><p>Pilih paket Robux yang ingin kamu beli ♡</p><span class="stock" id="stockText">Stok keseluruhan dikonfirmasi admin</span></div><div class="grid" id="robuxGrid"></div><div class="summary" id="summary">Paket Terpilih: <strong>Belum ada pilihan</strong></div>
+<div class="rules"><h3>♡ Syarat & Ketentuan Robux</h3><ol><li>Setelah pembayaran, tidak ada refund.</li><li>Cek limit harian dan bulanan. Jika tidak tahu cara mengeceknya, tanyakan kepada admin.</li><li>Untuk pembelian di atas 500 Robux, perhatikan ketentuan V2L dan limit akun Roblox.</li><li>Jika terkena limit, periksa kembali ketentuan akun atau tanyakan kepada admin.</li><li>Pastikan akun dan informasi yang diberikan benar sebelum order.</li><li>Estimasi pengerjaan 1–20 menit. Mohon tidak spam chat.</li></ol></div>
+<div class="agree"><input type="checkbox" id="agreeRobux"><label for="agreeRobux">Saya sudah membaca dan menyetujui syarat & ketentuan Robux.</label></div>
+<div class="form"><h3>♡ Data Order Robux</h3><div class="fields"><div class="field"><label for="username">Username Roblox</label><input id="username" placeholder="Masukkan username Roblox" autocomplete="off"></div><div class="field"><label>&nbsp;</label><button class="btn orange" id="checkUser" type="button">Cek Username</button></div></div><div class="result" id="userResult" aria-live="polite"></div><p class="hint">Pengecekan membantu menemukan akun berdasarkan username, bukan memverifikasi kepemilikannya.</p><div class="field"><label for="displayName">Display Name</label><input id="displayName" placeholder="Terisi otomatis setelah akun ditemukan"></div><div style="text-align:center;margin-top:14px"><button class="btn" id="orderRobux" type="button">Lanjutkan Order Robux ♡</button></div></div></section>
+<section class="section" id="apk"><div class="head"><div class="mini">୨ৎ DIGITAL SUBSCRIPTION ୨ৎ</div><h2>🎀 APK Premium Pricelist</h2><p>Pilih aplikasi, subtitle, dan paket yang kamu inginkan ♡</p></div><div class="apkgrid" id="apkGrid"></div>
+<div class="rules" style="margin-top:18px"><h3>♡ Syarat & Ketentuan APK Premium</h3><ol><li>25–28 hari dihitung sebagai 1 bulan.</li><li>5–7 hari dihitung sebagai 1 minggu.</li><li>Wajib mengirim screenshot setelah berhasil login.</li><li>Jika login membutuhkan OTP, wajib membuat janji waktu dengan admin.</li><li>Perbaikan dapat memakan waktu hingga 1 minggu. Selama perbaikan, durasi langganan tidak dihitung dan akan ditambahkan sesuai waktu perbaikan.</li><li>Dilarang logout setelah login tanpa konfirmasi admin.</li><li>Pembelian non-private memiliki risiko terkena limit screen.</li></ol></div><div class="agree"><input type="checkbox" id="agreeApk"><label for="agreeApk">Saya sudah membaca dan menyetujui syarat & ketentuan APK Premium.</label></div><div class="contact"><b>Belum menemukan aplikasi yang dicari?</b><p class="hint">Hubungi admin untuk menanyakan aplikasi atau paket lainnya.</p><button class="btn orange" id="requestApk">Request APK ke Admin</button></div></section>
+<section class="contact" id="contact"><div style="font-size:30px">🐰 💗 🧸</div><h2 style="color:#e83e8c">Syiinyourheart ♡</h2><b>cute price • happy service</b><p>Thank you for trusting our little shop!</p><a class="btn" href="https://wa.me/6283899883913" target="_blank" rel="noopener">Chat Admin WhatsApp</a></section>
+</main><footer>© <span id="year"></span> Syiinyourheart. Made with ♡</footer>
 <script>
-function showService(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-function toggleButton(type) {
-  const checked = document.getElementById(type === 'robux' ? 'agreeRobux' : 'agreeApk').checked;
-  document.getElementById(type + 'Form').style.display = checked ? 'block' : 'none';
-}
-
-const WHATSAPP_ADMIN = "6283899883913";
-
-function sendOrder(type) {
-  let message = "";
-
-  if (type === "robux") {
-    const username = document.getElementById("username").value.trim();
-    const displayname = document.getElementById("displayname").value.trim();
-    const amount = document.getElementById("robuxAmount").value;
-
-    if (!username || !displayname || !amount) {
-      alert("Lengkapi semua data order Robux terlebih dahulu.");
-      return;
-    }
-
-    message = "ORDER ROBUX - SYIINYOURHEART\n\n" +
-      "Username: " + username + "\n" +
-      "Display Name: " + displayname + "\n" +
-      "Jumlah: " + amount;
-  }
-
-  if (type === "apk") {
-    const name = document.getElementById("customerName").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const device = document.getElementById("device").value.trim();
-    const location = document.getElementById("location").value.trim();
-    const app = document.getElementById("appName").value;
-    const duration = document.getElementById("duration").value;
-
-    if (!name || !phone || !device || !location || !app || !duration) {
-      alert("Lengkapi semua data APK Premium terlebih dahulu.");
-      return;
-    }
-
-    message = "ORDER APK PREMIUM - SYIINYOURHEART\n\n" +
-      "Nama: " + name + "\n" +
-      "No. HP: " + phone + "\n" +
-      "Device: " + device + "\n" +
-      "Lokasi: " + location + "\n" +
-      "Nama APK: " + app + "\n" +
-      "Durasi: " + duration;
-  }
-
-  const url = "https://wa.me/" + WHATSAPP_ADMIN +
-    "?text=" + encodeURIComponent(message);
-
-  window.open(url, "_blank");
-}
-
-</script>
-</body>
-</html>
+const WHATSAPP_ADMIN="6283899883913";
+// Rate awal mengikuti persetujuan: nominal x rate, tanpa pembulatan.
+const ROBUX_RATES=[{min:10,max:90,step:10,rate:180},{min:100,max:900,step:100,rate:170},{min:1000,max:10000,step:1000,rate:165.5}];
+// Stok belum dibaca dari Supabase pada tahap ini; jangan tampilkan angka stok palsu.
+const ROBUX_STOCK=null;
+// Data contoh APK yang sudah pernah diberikan. Paket kosong meminta pelanggan konfirmasi admin.
+const APK_CATALOG=[{name:"CANVA PREMIUM",groups:[{title:"MEMBER",options:[{duration:"1 Hari",price:2000},{duration:"7 Hari",price:7000},{duration:"1 Bulan",price:12000},{duration:"2 Bulan",price:15000},{duration:"3 Bulan",price:18000},{duration:"6 Bulan",price:27000},{duration:"1 Tahun",price:37000}]},{title:"DESIGNER",options:[]},{title:"LIFETIME",options:[{duration:"Lifetime • Garansi 6 Bulan",price:34000}]}]}];
+let selected=null,robloxUser=null;
+const money=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:2}).format(n).replace(",00","");
+function rateFor(n){const g=ROBUX_RATES.find(x=>n>=x.min&&n<=x.max&&n%x.step===0);return g?g.rate:null}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function wa(msg){window.open("https://wa.me/"+WHATSAPP_ADMIN+"?text="+encodeURIComponent(msg),"_blank","noopener")}
+function renderRobux(){const grid=document.getElementById("robuxGrid");grid.innerHTML="";ROBUX_RATES.forEach(g=>{for(let n=g.min;n<=g.max;n+=g.step){const price=n*g.rate,b=document.createElement("button");b.type="button";b.className="robux"+(selected===n?" selected":"");b.setAttribute("aria-pressed",selected===n?"true":"false");b.innerHTML=`<span class="check">✓</span><span class="coin">◇</span><span class="amount">${n.toLocaleString("id-ID")} Robux</span><span class="price">${money(price)}</span>`;b.addEventListener("click",()=>{selected=n;renderRobux();document.getElementById("summary").innerHTML=`Paket Terpilih: <strong>${n.toLocaleString("id-ID")} Robux — ${money(price)}</strong>`});grid.appendChild(b)}});document.getElementById("stockText").textContent=ROBUX_STOCK===null?"Stok keseluruhan dikonfirmasi admin":"Stok tersedia: "+ROBUX_STOCK.toLocaleString("id-ID")+" R"}
+function renderApk(){const grid=document.getElementById("apkGrid");grid.innerHTML="";APK_CATALOG.forEach(app=>{const card=document.createElement("article");card.className="apkcard";const title=document.createElement("div");title.className="apktitle";title.textContent=app.name;card.appendChild(title);const body=document.createElement("div");body.className="apkbody";app.groups.forEach(group=>{const box=document.createElement("div");box.className="group";const h=document.createElement("h4");h.textContent=group.title;box.appendChild(h);if(!group.options.length){const e=document.createElement("div");e.className="empty";e.textContent="Hubungi admin untuk pilihan paket dan harga.";box.appendChild(e)}else group.options.forEach(o=>{const b=document.createElement("button");b.type="button";b.className="option";b.innerHTML=`<span>${esc(o.duration)}</span><b>${money(o.price)}</b>`;b.addEventListener("click",()=>{if(!document.getElementById("agreeApk").checked){alert("Silakan baca dan setujui syarat & ketentuan APK Premium terlebih dahulu.");return}wa(["ORDER APK PREMIUM — SYIINYOURHEART","","Aplikasi: "+app.name,"Subtitle/Paket: "+group.title,"Durasi: "+o.duration,"Harga: "+money(o.price),"","Mohon bantu proses pesanan saya. Terima kasih!"].join("\n"))});box.appendChild(b)});body.appendChild(box)});card.appendChild(body);grid.appendChild(card)})}
+async function checkUser(){const name=document.getElementById("username").value.trim(),out=document.getElementById("userResult"),display=document.getElementById("displayName");robloxUser=null;display.value="";if(!name){out.innerHTML='<span class="error">Masukkan username Roblox terlebih dahulu.</span>';return}out.textContent="Sedang memeriksa username…";try{const r=await fetch("https://users.roblox.com/v1/usernames/users",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({usernames:[name],excludeBannedUsers:false})});if(!r.ok)throw Error();const d=await r.json();if(!d.data?.length){out.innerHTML='<span class="error">Username tidak ditemukan. Periksa kembali penulisannya.</span>';return}const u=d.data[0];robloxUser=u;display.value=u.displayName||u.name;let img="";try{const ar=await fetch("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="+u.id+"&size=150x150&format=Png&isCircular=true");const ad=await ar.json();img=ad.data?.[0]?.imageUrl||""}catch(e){}out.innerHTML=`<div class="found">${img?`<img src="${img}" alt="Avatar Roblox">`:""}<span><b>Akun ditemukan!</b><br>${esc(u.displayName||u.name)} (@${esc(u.name)})</span></div>`}catch(e){out.innerHTML='<span class="error">Pengecekan username gagal sementara. Silakan coba lagi atau konfirmasi kepada admin.</span>'}}
+document.getElementById("checkUser").addEventListener("click",checkUser);document.getElementById("username").addEventListener("keydown",e=>{if(e.key==="Enter")checkUser()});
+document.getElementById("orderRobux").addEventListener("click",()=>{const u=document.getElementById("username").value.trim(),d=document.getElementById("displayName").value.trim();if(!selected){alert("Pilih nominal Robux terlebih dahulu.");return}if(!u||!d){alert("Isi username dan display name Roblox terlebih dahulu.");return}if(!document.getElementById("agreeRobux").checked){alert("Silakan baca dan setujui syarat & ketentuan Robux.");return}const r=rateFor(selected),p=selected*r;wa(["ORDER ROBUX — SYIINYOURHEART","","Username: "+u,"Display Name: "+d,"Jumlah: "+selected+" Robux","Rate: "+r,"Estimasi Harga: "+money(p),"Catatan: Mohon konfirmasi stok keseluruhan dan proses pesanan."].join("\n"))});
+document.getElementById("requestApk").addEventListener("click",()=>wa("Halo admin Syiinyourheart, saya ingin request informasi aplikasi/paket APK Premium yang belum tercantum di website."));
+document.getElementById("year").textContent=new Date().getFullYear();renderRobux();renderApk();
+</script></body></html>S
