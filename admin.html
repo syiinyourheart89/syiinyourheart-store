@@ -2,50 +2,255 @@
 <html lang="id">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Syiinyourheart — Admin</title>
+<title>Syiinyourheart — Royal Admin</title>
 <style>
-:root{--pink:#ed5793;--orange:#ff9a48;--yellow:#fff1a9;--ink:#684257;--bg:#fff9ef}*{box-sizing:border-box}body{margin:0;font:15px system-ui,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe2a8,transparent 35%),radial-gradient(circle at 95% 15%,#ffd0e2,transparent 35%),var(--bg)}header{background:#fff;border-bottom:4px solid var(--yellow);padding:17px max(20px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.logo{font-size:22px;font-weight:900;color:var(--pink)}main{max-width:1100px;margin:30px auto;padding:0 18px}.card{background:#fff;border:2px solid #ffe0d6;border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 8px 24px #e97a8b12}h1,h2,h3{margin:0 0 14px}h1{font-size:26px}h2{font-size:21px}p{line-height:1.5}label{display:block;font-weight:700;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px;border:1px solid #edc7d4;border-radius:10px;font:inherit;background:#fff}textarea{min-height:76px}button{border:0;border-radius:12px;padding:11px 17px;background:var(--pink);color:#fff;font-weight:700;cursor:pointer}button:hover{filter:brightness(.96)}button:disabled{opacity:.5;cursor:wait}.secondary{background:#fff1d6;color:#764c35}.danger{background:#b74668}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.muted{color:#8f7380;font-size:13px}.hide{display:none!important}.item{border:1px solid #f5d9dd;border-radius:14px;padding:15px;margin-top:12px}.item h3{margin-bottom:6px}.pill{display:inline-block;background:#fff1bd;padding:3px 9px;border-radius:20px;font-size:12px}.notice{background:#fff1c8;border-radius:12px;padding:12px;margin:12px 0}.error{color:#b52b4b}.success{color:#18754e}nav{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}nav button{background:#ffb259;color:#5d3549}nav button.selected{background:var(--pink);color:#fff}hr{border:0;border-top:1px solid #f4d9df;margin:20px 0}@media(max-width:650px){.grid{grid-template-columns:1fr}header{padding:15px}main{margin-top:16px}}
+:root{--wine:#5b202b;--wine2:#71313c;--gold:#c7a36a;--gold2:#ead6a9;--cream:#fff8e9;--paper:#fffdf7;--ink:#51363a;--muted:#8c7470;--line:#dfc99f;--green:#dcebd5;--red:#f5dadd}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 0 0,#f8e5c5,transparent 36%),#fff8ed;color:var(--ink);font:14px Georgia,serif}
+header{background:var(--wine);color:var(--gold2);border-bottom:2px solid var(--gold);padding:16px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-size:24px;letter-spacing:.04em}.logo small{display:block;font:10px Arial,sans-serif;letter-spacing:3px;margin-top:4px;color:var(--gold)}
+main{max-width:1250px;margin:26px auto;padding:0 16px}.card{background:var(--paper);border:1px solid var(--line);outline:1px solid #f1e4c9;outline-offset:-5px;padding:22px;margin-bottom:17px;box-shadow:0 8px 22px #4b1a2410}
+h1,h2,h3{margin:0 0 13px;color:var(--wine)}h1{font-size:29px}h2{font-size:21px}h3{font-size:17px}p{line-height:1.5}
+label{display:block;font:bold 12px Arial,sans-serif;margin:12px 0 6px;color:#65474a}
+input,select,textarea{width:100%;padding:11px;border:1px solid #d9c49b;background:white;color:var(--ink);font:14px Arial,sans-serif;outline-color:var(--gold)}
+textarea{min-height:75px}button{border:1px solid var(--gold);padding:10px 15px;background:var(--wine);color:#f5e5c1;font:bold 11px Arial,sans-serif;letter-spacing:.06em;cursor:pointer;text-transform:uppercase}
+button:hover{background:var(--wine2)}button:disabled{opacity:.5;cursor:wait}.secondary{background:#f4e8d1;color:var(--wine)}.danger{background:#8e2938}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.muted{color:var(--muted);font:12px/1.5 Arial,sans-serif}.hide{display:none!important}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+nav{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 0}nav button{background:#ead6b0;color:var(--wine)}nav button.selected{background:var(--wine);color:#fff0cf}
+.item{border:1px solid #e4d2ad;padding:14px;margin-top:10px;background:#fffaf0}.pill{display:inline-block;background:#efe1c4;color:#65422e;padding:4px 9px;border-radius:20px;font:11px Arial,sans-serif}.notice{background:#fff0ca;padding:12px;margin:12px 0;font:12px/1.5 Arial,sans-serif}.error{color:#b32b43}.success{color:#247147}
+.metric{background:#fff9ed;border:1px solid var(--gold);padding:16px}.metric span{display:block;font:11px Arial,sans-serif;color:var(--muted)}.metric strong{display:block;font-size:24px;color:var(--wine);margin-top:7px}.metric.profit{background:#edf4e7}.metric.profit strong{color:#28653a}
+table{width:100%;border-collapse:collapse;font:12px Arial,sans-serif;margin-top:10px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eadcc2;vertical-align:top}th{background:#f3e6d0;color:#613d3c}
+.section-head{background:var(--wine);color:#f4dfb7;padding:12px 15px;margin:-22px -22px 17px;font-size:17px}
+small.help{font:11px/1.4 Arial,sans-serif;color:var(--muted)}
+#message{font:13px Arial,sans-serif}
+@media(max-width:760px){.grid,.grid3{grid-template-columns:1fr}.card{padding:17px}.section-head{margin:-17px -17px 15px}table{display:block;overflow-x:auto;white-space:nowrap}}
 </style>
 </head>
 <body>
-<header><div class="logo">୨ৎ Syiinyourheart <span style="font-size:13px">ADMIN</span></div><div class="toolbar"><span id="account" class="muted"></span><button id="logout" class="secondary hide">Keluar</button></div></header>
+<header>
+  <div class="logo">♛ Syiinyourheart <small>ROYAL ADMIN PANEL</small></div>
+  <div class="toolbar"><span id="account" class="muted" style="color:#ead6a9"></span><button id="logout" class="secondary hide">Keluar</button></div>
+</header>
 <main>
-<section id="setup" class="card"><h1>♡ Hubungkan Supabase</h1><p>Masukkan Project URL dan <b>Publishable Key</b> milik proyekmu. Keduanya adalah konfigurasi publik, bukan password.</p><div class="notice">Jangan pernah memasukkan Secret Key, Service Role Key, atau password akun ke kolom konfigurasi.</div><label>Project URL</label><input id="projectUrl" placeholder="https://xxxxx.supabase.co" autocomplete="off"><label>Publishable Key</label><input id="publicKey" placeholder="sb_publishable_..." autocomplete="off"><p><button id="connect">Hubungkan</button></p><p class="muted">Konfigurasi disimpan hanya untuk tab ini selama halaman terbuka. Setelah dashboard siap, konfigurasi bisa dipasang permanen di kode publik.</p></section>
-<section id="login" class="card hide"><h1>♡ Login Owner</h1><form id="loginForm"><label>Email akun Supabase Auth</label><input id="email" type="email" required autocomplete="username"><label>Password</label><input id="password" type="password" required autocomplete="current-password"><p><button type="submit">Masuk Dashboard</button></p></form></section>
+<section id="setup" class="card">
+  <h1>Hubungkan Supabase</h1>
+  <p>Masukkan Project URL dan Publishable Key proyekmu. Jangan masukkan Secret Key atau Service Role Key.</p>
+  <label>Project URL</label><input id="projectUrl" placeholder="https://xxxxx.supabase.co" autocomplete="off">
+  <label>Publishable Key</label><input id="publicKey" placeholder="sb_publishable_..." autocomplete="off">
+  <p><button id="connect">Hubungkan</button></p>
+</section>
+<section id="login" class="card hide">
+  <h1>Login Owner</h1>
+  <form id="loginForm"><label>Email Supabase Auth</label><input id="email" type="email" required autocomplete="username"><label>Password</label><input id="password" type="password" required autocomplete="current-password"><p><button type="submit">Masuk Dashboard</button></p></form>
+</section>
 <p id="message" role="status"></p>
-<section id="dashboard" class="hide"><div class="card"><h1>Welcome to Syiinyourheart ♡</h1><p id="greeting"></p><nav><button data-tab="products" class="selected">Produk</button><button data-tab="variants">Paket & Harga</button><button data-tab="orders">Pesanan</button></nav></div>
-<div id="tab-products"><div class="card"><h2 id="productHeading">Tambah Produk</h2><form id="productForm"><input type="hidden" id="productId"><div class="grid"><div><label>Nama Produk</label><input id="productName" required placeholder="Contoh: Canpa Premium"></div><div><label>Kategori</label><select id="productCategory"><option value="">Tanpa kategori</option></select></div><div><label>Jenis Produk</label><select id="productType"><option value="apk">APK Premium (apk)</option><option value="robux">Robux (robux)</option></select></div><div><label>Durasi (opsional)</label><input id="productDuration" placeholder="Contoh: 1 bulan"></div><div><label>Harga IDR</label><input id="productIdr" type="number" min="0" step="1" value="0" required></div><div><label>Harga MYR</label><input id="productMyr" type="number" min="0" step="0.01" value="0" required></div><div id="robuxStockField"><label>Total Persediaan Robux (R)</label><input id="productStock" type="number" min="0" step="1" value="0" required><p class="muted">Khusus Robux: isi total seluruh persediaan, misalnya 10000. Semua nominal mengambil dari stok gabungan ini.</p></div><div><label>Status</label><select id="productActive"><option value="true">Aktif</option><option value="false">Nonaktif</option></select></div></div><label>Deskripsi</label><textarea id="productDescription"></textarea><p class="toolbar"><button type="submit">Simpan Produk</button><button type="button" id="resetProduct" class="secondary">Bersihkan Form</button></p></form><p class="muted">Robux memakai satu stok gabungan dalam satuan R. APK Premium tidak memakai jumlah stok; ketersediaannya diatur per paket melalui menu Paket & Harga.</p></div><div class="card"><h2>Daftar Produk</h2><div id="productsList">Memuat...</div></div></div>
-<div id="tab-variants" class="hide"><div class="card"><h2 id="variantHeading">Tambah Paket APK</h2><form id="variantForm"><input type="hidden" id="variantId"><div class="grid"><div><label>Produk / Aplikasi</label><select id="variantProduct" required></select></div><div><label>Nama Paket</label><input id="variantName" required placeholder="Member 1 Bulan"></div><div><label>Jenis Akun</label><input id="variantAccount" placeholder="Member / Designer / Lifetime"></div><div><label>Akses</label><input id="variantAccess" placeholder="Sharing / Private"></div><div><label>Durasi</label><input id="variantDuration" placeholder="1 bulan"></div><div><label>Garansi</label><input id="variantWarranty" placeholder="20–28 hari"></div><div><label>Harga IDR</label><input id="variantIdr" type="number" min="0" step="1" placeholder="12000"></div><div><label>Harga MYR</label><input id="variantMyr" type="number" min="0" step="0.01" placeholder="Opsional"></div><div><label>Urutan</label><input id="variantOrder" type="number" step="1" value="0"></div><div><label>Ketersediaan Paket</label><select id="variantActive"><option value="true">Tersedia</option><option value="false">Tidak tersedia</option></select></div></div><label>Deskripsi</label><textarea id="variantDescription"></textarea><p class="toolbar"><button type="submit">Simpan Paket</button><button type="button" id="resetVariant" class="secondary">Bersihkan Form</button></p></form><p class="muted">Harga IDR dan MYR diisi manual. Kolom harga yang dikosongkan tidak ditampilkan untuk mata uang tersebut.</p></div><div class="card"><h2>Daftar Paket</h2><div id="variantsList">Memuat...</div></div></div>
-<div id="tab-orders" class="hide"><div class="card"><h2>Pesanan</h2><p class="notice">Daftar ini untuk pemantauan. Fitur perubahan status, konfirmasi pembayaran, dan reservasi stok aman akan dibuat pada tahap berikutnya.</p><div id="ordersList">Memuat...</div></div></div></section>
+
+<section id="dashboard" class="hide">
+  <div class="card">
+    <h1>Dashboard Syiinyourheart</h1><p id="greeting" class="muted"></p>
+    <nav>
+      <button class="selected" data-tab="overview">Dashboard</button>
+      <button data-tab="finance">Keuangan</button>
+      <button data-tab="products">Produk</button>
+      <button data-tab="variants">Paket & Harga APK</button>
+      <button data-tab="orders">Pesanan</button>
+    </nav>
+  </div>
+
+  <section id="tab-overview">
+    <div class="grid3">
+      <div class="metric"><span>Total Pesanan</span><strong id="overviewOrders">0</strong></div>
+      <div class="metric"><span>Total Penjualan Tercatat</span><strong id="overviewSales">Rp0</strong></div>
+      <div class="metric profit"><span>Estimasi Keuntungan</span><strong id="overviewProfit">Rp0</strong></div>
+    </div>
+    <div class="card" style="margin-top:16px"><h2>Pelanggan Teraktif ♛</h2><p class="muted">Peringkat berdasarkan jumlah pesanan yang sudah lunas/selesai. Username pelanggan akan diambil dari data pesanan.</p><div id="customerLeaderboard"></div></div>
+    <div class="card" style="margin-top:16px"><h2>Ringkasan Terbaru</h2><p class="muted">Angka dihitung dari pesanan yang tersimpan di tabel orders. Pastikan pesanan benar-benar dicatat dan status pembayarannya diperbarui.</p><div id="overviewRecent"></div></div>
+  </section>
+
+  <section id="tab-finance" class="hide">
+    <div class="card">
+      <h2>Ringkasan Keuangan</h2>
+      <p class="muted">Laporan menggunakan pesanan berstatus selesai/paid/completed. Pesanan yang belum dibayar tidak dihitung sebagai penjualan terealisasi.</p>
+      <div class="grid3">
+        <div class="metric"><span>Total Penjualan</span><strong id="finSales">Rp0</strong></div>
+        <div class="metric"><span>Total Modal</span><strong id="finCost">Rp0</strong></div>
+        <div class="metric profit"><span>Keuntungan Kotor</span><strong id="finProfit">Rp0</strong></div>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <div><label>Filter periode</label><select id="financePeriod"><option value="all">Semua waktu</option><option value="month">Bulan ini</option><option value="year">Tahun ini</option></select></div>
+        <div><label>Catatan</label><p class="muted">Keuntungan bersih setelah biaya operasional akan ditambahkan setelah pencatatan pengeluaran dibuat.</p></div>
+      </div>
+      <div id="financeBreakdown"></div>
+    </div>
+    <div class="card">
+      <h2>Pengaturan Modal Robux</h2>
+      <p class="muted">Rate modal supplier dikalikan nominal Robux. Biaya Roblox Plus dimasukkan sebagai alokasi biaya per transaksi agar dapat dihitung pada setiap order.</p>
+      <form id="financeSettingsForm">
+        <div class="grid">
+          <div><label>Rate beli Robux dari supplier</label><input id="buyRate" type="number" min="0" step="0.0001" placeholder="125" required></div>
+          <div><label>Alokasi biaya Roblox Plus per transaksi (Rp)</label><input id="plusCost" type="number" min="0" step="0.01" placeholder="Masukkan biaya per transaksi" required></div>
+        </div>
+        <p class="notice">Contoh: nominal 500 × rate modal 125 = Rp62.500. Jika alokasi Roblox Plus Rp95 per transaksi, total modal menjadi Rp62.595. Jika biaya Plus sebenarnya bulanan, masukkan bagian biaya yang dialokasikan ke satu transaksi, bukan otomatis seluruh tagihan bulanan.</p>
+        <button type="submit">Simpan Modal Robux</button>
+      </form>
+      <hr>
+      <h2>Modal APK Premium</h2>
+      <p class="muted">Modal beli dan harga jual setiap paket diisi terpisah pada menu Paket & Harga APK.</p>
+    </div>
+    <div class="card"><h2>Riwayat Keuangan</h2><div id="financeOrders"></div></div>
+  </section>
+
+  <section id="tab-products" class="hide">
+    <div class="card">
+      <h2 id="productHeading">Tambah Produk</h2>
+      <form id="productForm"><input type="hidden" id="productId">
+        <div class="grid">
+          <div><label>Nama Produk</label><input id="productName" required placeholder="Contoh: Robux"></div>
+          <div><label>Kategori</label><select id="productCategory"><option value="">Tanpa kategori</option></select></div>
+          <div><label>Jenis Produk</label><select id="productType"><option value="robux">Robux</option><option value="apk">APK Premium</option></select></div>
+          <div><label>Durasi (opsional)</label><input id="productDuration" placeholder="Contoh: 1 bulan"></div>
+          <div><label>Harga jual IDR (opsional untuk produk induk)</label><input id="productIdr" type="number" min="0" step="1" value="0"></div>
+          <div><label>Harga jual MYR (opsional)</label><input id="productMyr" type="number" min="0" step="0.01" value="0"></div>
+          <div id="robuxStockField"><label>Total stok Robux keseluruhan (R)</label><input id="productStock" type="number" min="0" step="1" value="0"><small class="help">Satu angka stok gabungan. Nominal order mengambil dari stok keseluruhan.</small></div>
+          <div><label>Status</label><select id="productActive"><option value="true">Aktif</option><option value="false">Nonaktif</option></select></div>
+        </div>
+        <label>Deskripsi</label><textarea id="productDescription"></textarea>
+        <p class="toolbar"><button type="submit">Simpan Produk</button><button type="button" id="resetProduct" class="secondary">Bersihkan</button></p>
+      </form>
+    </div>
+    <div class="card"><h2>Daftar Produk</h2><div id="productsList">Memuat...</div></div>
+  </section>
+
+  <section id="tab-variants" class="hide">
+    <div class="card">
+      <h2 id="variantHeading">Tambah Paket APK</h2>
+      <form id="variantForm"><input type="hidden" id="variantId">
+        <div class="grid">
+          <div><label>Produk / Aplikasi</label><select id="variantProduct" required></select></div>
+          <div><label>Judul / Subtitle Paket</label><input id="variantName" required placeholder="Member 1 Bulan"></div>
+          <div><label>Jenis Akun</label><input id="variantAccount" placeholder="Member / Designer / Lifetime"></div>
+          <div><label>Akses</label><input id="variantAccess" placeholder="Sharing / Private"></div>
+          <div><label>Durasi</label><input id="variantDuration" placeholder="1 bulan"></div>
+          <div><label>Garansi</label><input id="variantWarranty" placeholder="20–28 hari"></div>
+          <div><label>Harga jual IDR</label><input id="variantIdr" type="number" min="0" step="1"></div>
+          <div><label>Modal beli IDR</label><input id="variantCostIdr" type="number" min="0" step="0.01" placeholder="Harga beli dari supplier"></div>
+          <div><label>Harga jual MYR</label><input id="variantMyr" type="number" min="0" step="0.01"></div>
+          <div><label>Modal beli MYR</label><input id="variantCostMyr" type="number" min="0" step="0.01"></div>
+          <div><label>Urutan</label><input id="variantOrder" type="number" step="1" value="0"></div>
+          <div><label>Ketersediaan</label><select id="variantActive"><option value="true">Tersedia</option><option value="false">Tidak tersedia</option></select></div>
+        </div>
+        <label>Deskripsi</label><textarea id="variantDescription"></textarea>
+        <p class="toolbar"><button type="submit">Simpan Paket & Modal</button><button type="button" id="resetVariant" class="secondary">Bersihkan</button></p>
+      </form>
+    </div>
+    <div class="card"><h2>Daftar Paket APK</h2><div id="variantsList">Memuat...</div></div>
+  </section>
+
+  <section id="tab-orders" class="hide">
+    <div class="card"><h2>Daftar Pesanan</h2><p class="notice">Data keuangan dihitung dari snapshot modal saat order dibuat. Pesanan lama yang belum memiliki snapshot akan memakai estimasi modal terbaru jika datanya tersedia.</p><div id="ordersList">Memuat...</div></div>
+  </section>
+</section>
 </main>
+
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-const $=id=>document.getElementById(id), show=(id,yes)=>$(id).classList.toggle('hide',!yes), escapeHtml=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let db=null, owner=null, products=[],variants=[],prices=[],categories=[];
+const $=id=>document.getElementById(id), show=(id,yes)=>$(id).classList.toggle('hide',!yes);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'Rp'+Number(n||0).toLocaleString('id-ID',{maximumFractionDigits:2});
+let db=null,owner=null,products=[],variants=[],prices=[],categories=[],orders=[],finSettings={buy_rate:125,plus_cost_per_order:0};
+
 function msg(t,bad=false){$('message').textContent=t;$('message').className=bad?'error':'success'}
-function errorText(e){return e?.message||String(e)}
 function config(){return {url:$('projectUrl').value.trim().replace(/\/$/,''),key:$('publicKey').value.trim()}}
 function validConfig(url,key){return /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)&&(/^(sb_publishable_|eyJ)/.test(key))}
-async function connect(){const {url,key}=config();if(!validConfig(url,key)){msg('Periksa Project URL dan Publishable Key.',true);return}try{db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}});show('setup',false);show('login',true);msg('Terhubung. Silakan login dengan akun Owner.')}catch(e){msg(errorText(e),true)}}
-updateStockField();
-$('connect').onclick=connect;
-$('loginForm').onsubmit=async e=>{e.preventDefault();if(!db)return;msg('Memeriksa akun...');const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});$('password').value='';if(error){msg(errorText(error),true);return}const {data:profile,error:profileError}=await db.from('admin_profiles').select('id,display_name,role,permissions').eq('id',data.user.id).maybeSingle();if(profileError||!profile||profile.role!=='owner'||profile.permissions?.full_access!==true){await db.auth.signOut();msg('Akun ini tidak memiliki akses Owner.',true);return}owner=profile;show('login',false);show('dashboard',true);show('logout',true);$('account').textContent=data.user.email;$('greeting').textContent='Halo, '+(owner.display_name||'Owner')+'! Kelola katalog dan paket tokomu di sini.';msg('Login berhasil.');await refreshAll()};
-$('logout').onclick=async()=>{if(db)await db.auth.signOut();owner=null;show('dashboard',false);show('logout',false);show('login',true);$('account').textContent='';msg('Kamu sudah keluar.')};
-document.querySelectorAll('nav button').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b===btn));['products','variants','orders'].forEach(t=>show('tab-'+t,t===btn.dataset.tab));if(btn.dataset.tab==='orders')loadOrders()});
-async function fetchTable(table,select='*'){const {data,error}=await db.from(table).select(select).order('created_at',{ascending:false});if(error)throw error;return data||[]}
-async function refreshAll(){try{categories=await fetchTable('categories');products=await fetchTable('products');variants=await fetchTable('product_variants');const {data,error}=await db.from('product_prices').select('*');if(error)throw error;prices=data||[];renderOptions();renderProducts();renderVariants()}catch(e){msg('Gagal mengambil data: '+errorText(e),true)}}
-function renderOptions(){const cat=$('productCategory').value, vp=$('variantProduct').value;$('productCategory').innerHTML='<option value="">Tanpa kategori</option>'+categories.map(c=>`<option value="${escapeHtml(c.id)}">${escapeHtml(c.name)}</option>`).join('');$('productCategory').value=cat||'';$('variantProduct').innerHTML='<option value="">Pilih produk</option>'+products.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('');$('variantProduct').value=vp||''}
-function renderProducts(){$('productsList').innerHTML=products.length?products.map(p=>`<div class="item"><h3>${escapeHtml(p.name)} <span class="pill">${p.is_active?'Aktif':'Nonaktif'}</span></h3><p class="muted">${escapeHtml(p.product_type)} · IDR ${Number(p.price_idr).toLocaleString('id-ID')} · MYR ${Number(p.price_myr).toLocaleString('en-MY')}${p.product_type==='robux'?' · Persediaan '+Math.max(0,Number(p.stock_total||0)-Number(p.stock_reserved||0)-Number(p.stock_sold||0)).toLocaleString('id-ID')+' R tersedia (total '+Number(p.stock_total||0).toLocaleString('id-ID')+' R)':''}</p><div class="toolbar"><button class="secondary" data-edit-product="${p.id}">Edit</button><button class="danger" data-delete-product="${p.id}">Hapus</button></div></div>`).join(''):'Belum ada produk.'}
-function renderVariants(){$('variantsList').innerHTML=variants.length?variants.map(v=>{const p=products.find(x=>x.id===v.product_id), pr=prices.filter(x=>x.variant_id===v.id);return `<div class="item"><h3>${escapeHtml(v.name)} <span class="pill">${v.is_active?'Tersedia':'Tidak tersedia'}</span></h3><p class="muted">${escapeHtml(p?.name||'Produk tidak ditemukan')} · ${escapeHtml(v.account_type||'')} · ${escapeHtml(v.access_type||'')} · ${escapeHtml(v.duration_label||'')}</p><p>${pr.map(x=>escapeHtml(x.currency)+' '+Number(x.price).toLocaleString(x.currency==='IDR'?'id-ID':'en-MY')).join(' · ')||'Harga belum diisi'}</p><div class="toolbar"><button class="secondary" data-edit-variant="${v.id}">Edit</button><button class="danger" data-delete-variant="${v.id}">Hapus</button></div></div>`}).join(''):'Belum ada paket.'}
-function updateStockField(){const isRobux=$('productType').value==='robux';$('robuxStockField').classList.toggle('hide',!isRobux);$('productStock').required=isRobux;if(!isRobux)$('productStock').value='0'}
-$('productType').addEventListener('change',updateStockField);
-function resetProduct(){$('productForm').reset();$('productId').value='';$('productHeading').textContent='Tambah Produk';updateStockField()}$('resetProduct').onclick=resetProduct;
+$('connect').onclick=()=>{const {url,key}=config();if(!validConfig(url,key)){msg('Periksa Project URL dan Publishable Key.',true);return}try{db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}});show('setup',false);show('login',true);msg('Terhubung. Silakan login Owner.')}catch(e){msg(e.message,true)}};
+$('loginForm').onsubmit=async e=>{e.preventDefault();msg('Memeriksa akun...');const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});$('password').value='';if(error){msg(error.message,true);return}const {data:p,error:pe}=await db.from('admin_profiles').select('id,display_name,role,permissions').eq('id',data.user.id).maybeSingle();if(pe||!p||p.role!=='owner'||p.permissions?.full_access!==true){await db.auth.signOut();msg('Akun ini tidak memiliki akses Owner.',true);return}owner=p;show('login',false);show('dashboard',true);show('logout',true);$('account').textContent=data.user.email;$('greeting').textContent='Selamat datang, '+(p.display_name||'Owner')+'.';msg('Login berhasil.');await refreshAll()};
+$('logout').onclick=async()=>{await db.auth.signOut();owner=null;show('dashboard',false);show('logout',false);show('login',true);$('account').textContent='';msg('Berhasil keluar.')};
+
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('selected',x===b));['overview','finance','products','variants','orders'].forEach(t=>show('tab-'+t,t===b.dataset.tab));if(b.dataset.tab==='orders')renderOrders();if(b.dataset.tab==='finance')renderFinance()});
+
+async function getRows(table,select='*'){const {data,error}=await db.from(table).select(select);if(error)throw error;return data||[]}
+async function refreshAll(){
+ try{
+  [categories,products,variants,orders]=await Promise.all([getRows('categories'),getRows('products'),getRows('product_variants'),getRows('orders')]);
+  const {data:pr,error}=await db.from('product_prices').select('*');if(error)throw error;prices=pr||[];
+  const {data:fs,error:fe}=await db.from('financial_settings').select('*').eq('id',1).maybeSingle();
+  if(fe)throw fe;if(fs)finSettings=fs;
+  renderOptions();renderProducts();renderVariants();renderOverview();renderFinance();renderOrders();
+ }catch(e){msg('Gagal mengambil data: '+e.message,true)}
+}
+function renderOptions(){const oldCat=$('productCategory').value,oldProduct=$('variantProduct').value;$('productCategory').innerHTML='<option value="">Tanpa kategori</option>'+categories.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');$('productCategory').value=oldCat;$('variantProduct').innerHTML='<option value="">Pilih produk</option>'+products.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('variantProduct').value=oldProduct}
+function renderProducts(){$('productsList').innerHTML=products.length?products.map(p=>`<div class="item"><h3>${esc(p.name)} <span class="pill">${p.is_active?'Aktif':'Nonaktif'}</span></h3><p class="muted">${esc(p.product_type)} · IDR ${Number(p.price_idr||0).toLocaleString('id-ID')} · MYR ${Number(p.price_myr||0).toLocaleString('en-MY')}${p.product_type==='robux'?' · Stok total '+Number(p.stock_total||0).toLocaleString('id-ID')+' R':''}</p><button class="secondary" data-edit-product="${p.id}">Edit</button> <button class="danger" data-del-product="${p.id}">Hapus</button></div>`).join(''):'Belum ada produk.'}
+function renderVariants(){$('variantsList').innerHTML=variants.length?variants.map(v=>{const p=products.find(x=>x.id===v.product_id),pr=prices.filter(x=>x.variant_id===v.id);return `<div class="item"><h3>${esc(p?.name||'Produk')} — ${esc(v.name)} <span class="pill">${v.is_active?'Tersedia':'Tidak tersedia'}</span></h3><p>${esc(v.account_type||'')} · ${esc(v.access_type||'')} · ${esc(v.duration_label||'')}</p><p class="muted">${pr.map(x=>x.currency+' '+money(x.price)).join(' · ')}</p><p class="muted">Modal IDR: ${money(v.cost_price_idr)} · Modal MYR: ${money(v.cost_price_myr)}</p><button class="secondary" data-edit-variant="${v.id}">Edit</button> <button class="danger" data-del-variant="${v.id}">Hapus</button></div>`}).join(''):'Belum ada paket.'}
+function calcOrder(o){
+ if(o.cost_total!=null)return {cost:Number(o.cost_total),profit:o.profit_total==null?Number(o.total_price)-Number(o.cost_total):Number(o.profit_total),estimated:false};
+ const product=products.find(p=>p.id===o.product_id);
+ if(o.product_type==='robux'||product?.product_type==='robux'){
+  const qty=Number(o.quantity||0),unit=qty*Number(finSettings.buy_rate||0)+Number(finSettings.plus_cost_per_order||0);
+  const cost=unit;return {cost,profit:Number(o.total_price||0)-cost,estimated:true};
+ }
+ const variant=variants.find(v=>v.id===o.variant_id);
+ const cost=Number(variant?.cost_price_idr||0)*Number(o.quantity||1);
+ return {cost,profit:Number(o.total_price||0)-cost,estimated:true};
+}
+function isPaid(o){return ['completed','paid','success','selesai'].includes(String(o.status||'').toLowerCase())}
+function filterOrders(){
+ const period=$('financePeriod')?.value||'all',now=new Date();
+ return orders.filter(o=>{if(!isPaid(o))return false;if(period==='all')return true;const d=new Date(o.created_at);return period==='month'?d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear():d.getFullYear()===now.getFullYear()});
+}
+function customerUsername(o){
+ const direct=[o.roblox_username,o.username,o.customer_username,o.robloxUser,o.customer_name];
+ for(const value of direct){if(typeof value==='string'&&value.trim())return value.trim()}
+ const detail=o.details||o.order_details||o.customer_data||o.metadata;
+ if(detail&&typeof detail==='object'){
+  const nested=[detail.roblox_username,detail.username,detail.customer_username,detail.robloxUser];
+  for(const value of nested){if(typeof value==='string'&&value.trim())return value.trim()}
+ }
+ return '';
+}
+function renderLeaderboard(){
+ const counts=new Map();
+ orders.filter(isPaid).forEach(o=>{
+  const username=customerUsername(o);if(!username)return;
+  const key=username.toLowerCase();
+  const current=counts.get(key)||{username,orders:0,spent:0};
+  current.orders+=1;current.spent+=Number(o.total_price||0);
+  counts.set(key,current);
+ });
+ const ranked=[...counts.values()].sort((a,b)=>b.orders-a.orders||b.spent-a.spent).slice(0,3);
+ const medals=['I','II','III'];
+ $('customerLeaderboard').innerHTML=ranked.length?ranked.map((c,i)=>`<div class="item" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><span class="pill">Peringkat ${medals[i]}</span><h3 style="margin:8px 0 3px">${esc(c.username)}</h3><span class="muted">${c.orders} pesanan selesai</span></div><div style="text-align:right"><strong style="color:var(--wine)">${money(c.spent)}</strong><div class="muted">Total belanja</div></div></div>`).join(''):'Belum ada data username pada pesanan yang sudah lunas. Pastikan order menyimpan username Roblox dan status pesanan sudah completed/paid.';
+}
+function renderOverview(){
+ const paid=orders.filter(isPaid),sales=paid.reduce((s,o)=>s+Number(o.total_price||0),0),profit=paid.reduce((s,o)=>s+calcOrder(o).profit,0);
+ $('overviewOrders').textContent=orders.length;$('overviewSales').textContent=money(sales);$('overviewProfit').textContent=money(profit);
+ renderLeaderboard();
+ $('overviewRecent').innerHTML=orders.slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,5).map(o=>`<div class="item">${esc(o.order_number)} · ${esc(o.product_name)} · ${money(o.total_price)} · ${esc(o.status)}</div>`).join('')||'Belum ada pesanan.';
+}
+function renderFinance(){
+ $('buyRate').value=finSettings.buy_rate??125;$('plusCost').value=finSettings.plus_cost_per_order??0;
+ const paid=filterOrders(),sales=paid.reduce((s,o)=>s+Number(o.total_price||0),0),cost=paid.reduce((s,o)=>s+calcOrder(o).cost,0),profit=sales-cost;
+ $('finSales').textContent=money(sales);$('finCost').textContent=money(cost);$('finProfit').textContent=money(profit);
+ $('financeBreakdown').innerHTML=`<p class="notice">Transaksi lunas: ${paid.length}. Angka modal yang belum disimpan pada saat order ditandai sebagai estimasi dan dapat berubah jika rate/modal produk diperbarui.</p><div class="grid"><div class="metric"><span>Jumlah pesanan lunas</span><strong>${paid.length}</strong></div><div class="metric"><span>Margin keuntungan kotor</span><strong>${sales?((profit/sales)*100).toFixed(2).replace('.',',')+'%':'0%'}</strong></div></div>`;
+ $('financeOrders').innerHTML=paid.length?`<table><thead><tr><th>Order</th><th>Produk</th><th>Penjualan</th><th>Modal</th><th>Laba kotor</th><th>Catatan</th></tr></thead><tbody>${paid.map(o=>{const c=calcOrder(o);return `<tr><td>${esc(o.order_number)}</td><td>${esc(o.product_name)}</td><td>${money(o.total_price)}</td><td>${money(c.cost)}</td><td>${money(c.profit)}</td><td>${c.estimated?'Estimasi':'Snapshot'}</td></tr>`}).join('')}</tbody></table>`:'Belum ada pesanan lunas pada periode ini.';
+}
+function renderOrders(){
+ $('ordersList').innerHTML=orders.length?`<table><thead><tr><th>Nomor</th><th>Produk</th><th>Pelanggan</th><th>Total</th><th>Status</th><th>Modal estimasi/snapshot</th></tr></thead><tbody>${orders.slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).map(o=>{const c=calcOrder(o);return `<tr><td>${esc(o.order_number)}</td><td>${esc(o.product_name)}</td><td>${esc(o.customer_name||'-')}</td><td>${money(o.total_price)}</td><td>${esc(o.status)}</td><td>${money(c.cost)} / laba ${money(c.profit)}</td></tr>`}).join('')}</tbody></table>`:'Belum ada pesanan.';
+}
+$('financePeriod').onchange=renderFinance;
+$('financeSettingsForm').onsubmit=async e=>{
+ e.preventDefault();const row={id:1,buy_rate:Number($('buyRate').value),plus_cost_per_order:Number($('plusCost').value),updated_at:new Date().toISOString()};
+ const {error}=await db.from('financial_settings').upsert(row,{onConflict:'id'});
+ if(error){msg('Gagal menyimpan modal: '+error.message,true);return}finSettings=row;msg('Pengaturan modal Robux tersimpan.');renderFinance();
+};
+function resetProduct(){$('productForm').reset();$('productId').value='';$('productHeading').textContent='Tambah Produk'}$('resetProduct').onclick=resetProduct;
+$('productForm').onsubmit=async e=>{e.preventDefault();const id=$('productId').value,isR=$('productType').value==='robux',row={name:$('productName').value.trim(),category_id:$('productCategory').value||null,product_type:$('productType').value,duration:$('productDuration').value.trim()||null,description:$('productDescription').value.trim()||null,price_idr:Number($('productIdr').value||0),price_myr:Number($('productMyr').value||0),stock_total:isR?Number($('productStock').value||0):0,is_active:$('productActive').value==='true',updated_at:new Date().toISOString()};const q=id?db.from('products').update(row).eq('id',id):db.from('products').insert(row);const {error}=await q;if(error){msg(error.message,true);return}msg('Produk disimpan.');resetProduct();await refreshAll()};
+$('productsList').onclick=async e=>{const ed=e.target.closest('[data-edit-product]'),del=e.target.closest('[data-del-product]');if(ed){const p=products.find(x=>x.id===ed.dataset.editProduct);$('productId').value=p.id;$('productName').value=p.name;$('productCategory').value=p.category_id||'';$('productType').value=p.product_type;$('productDuration').value=p.duration||'';$('productIdr').value=p.price_idr;$('productMyr').value=p.price_myr;$('productStock').value=p.stock_total||0;$('productActive').value=String(p.is_active);$('productDescription').value=p.description||'';$('productHeading').textContent='Edit Produk';$('productForm').scrollIntoView({behavior:'smooth'})}if(del&&confirm('Hapus produk ini?')){const {error}=await db.from('products').delete().eq('id',del.dataset.delProduct);if(error)msg(error.message,true);else await refreshAll()}};
 function resetVariant(){$('variantForm').reset();$('variantId').value='';$('variantHeading').textContent='Tambah Paket APK'}$('resetVariant').onclick=resetVariant;
-$('productsList').onclick=async e=>{const edit=e.target.closest('[data-edit-product]'),del=e.target.closest('[data-delete-product]');if(edit){const p=products.find(x=>x.id===edit.dataset.editProduct);if(!p)return;$('productId').value=p.id;$('productName').value=p.name;$('productCategory').value=p.category_id||'';$('productType').value=p.product_type;$('productDuration').value=p.duration||'';updateStockField();$('productIdr').value=p.price_idr;$('productMyr').value=p.price_myr;$('productStock').value=p.stock_total;$('productActive').value=String(p.is_active);$('productDescription').value=p.description||'';$('productHeading').textContent='Edit Produk';$('productForm').scrollIntoView({behavior:'smooth'})}if(del){const id=del.dataset.deleteProduct;if(!confirm('Hapus produk ini? Paket terkait mungkin juga terpengaruh.'))return;const {error}=await db.from('products').delete().eq('id',id);if(error)msg(errorText(error),true);else{msg('Produk dihapus.');await refreshAll()}}};
-$('productForm').onsubmit=async e=>{e.preventDefault();const id=$('productId').value,isRobux=$('productType').value==='robux',stock=isRobux?Number($('productStock').value):0,old=products.find(p=>p.id===id);if(old&&stock<Number(old.stock_reserved||0)+Number(old.stock_sold||0)){msg('Stok total tidak boleh kurang dari stok reserved + sold.',true);return}const row={name:$('productName').value.trim(),category_id:$('productCategory').value||null,product_type:$('productType').value,duration:$('productDuration').value.trim()||null,description:$('productDescription').value.trim()||null,price_idr:Number($('productIdr').value),price_myr:Number($('productMyr').value),stock_total:stock,is_active:$('productActive').value==='true',updated_at:new Date().toISOString()};const q=id?db.from('products').update(row).eq('id',id):db.from('products').insert(row);const {error}=await q;if(error){msg(errorText(error),true);return}msg('Produk berhasil disimpan.');resetProduct();await refreshAll()};
-$('variantsList').onclick=async e=>{const edit=e.target.closest('[data-edit-variant]'),del=e.target.closest('[data-delete-variant]');if(edit){const v=variants.find(x=>x.id===edit.dataset.editVariant);if(!v)return;$('variantId').value=v.id;$('variantProduct').value=v.product_id;$('variantName').value=v.name;$('variantAccount').value=v.account_type||'';$('variantAccess').value=v.access_type||'';$('variantDuration').value=v.duration_label||'';$('variantWarranty').value=v.warranty||'';$('variantDescription').value=v.description||'';$('variantOrder').value=v.sort_order||0;$('variantActive').value=String(v.is_active);$('variantIdr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='IDR')?.price??'';$('variantMyr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='MYR')?.price??'';$('variantHeading').textContent='Edit Paket';$('variantForm').scrollIntoView({behavior:'smooth'})}if(del){if(!confirm('Hapus paket ini?'))return;const {error}=await db.from('product_variants').delete().eq('id',del.dataset.deleteVariant);if(error)msg(errorText(error),true);else{msg('Paket dihapus.');await refreshAll()}}};
-$('variantForm').onsubmit=async e=>{e.preventDefault();const id=$('variantId').value;const row={product_id:$('variantProduct').value,name:$('variantName').value.trim(),account_type:$('variantAccount').value.trim()||null,access_type:$('variantAccess').value.trim()||null,duration_label:$('variantDuration').value.trim()||null,warranty:$('variantWarranty').value.trim()||null,description:$('variantDescription').value.trim()||null,sort_order:Number($('variantOrder').value),is_active:$('variantActive').value==='true',updated_at:new Date().toISOString()};let variantId=id;if(id){const {error}=await db.from('product_variants').update(row).eq('id',id);if(error){msg(errorText(error),true);return}}else{const {data,error}=await db.from('product_variants').insert(row).select('id').single();if(error){msg(errorText(error),true);return}variantId=data.id}for(const [currency,field] of [['IDR','variantIdr'],['MYR','variantMyr']]){const value=$(field).value.trim();if(value===''){const {error}=await db.from('product_prices').delete().eq('variant_id',variantId).eq('currency',currency);if(error){msg('Paket tersimpan, tetapi gagal menghapus harga '+currency+': '+errorText(error),true);return}}else{const {error}=await db.from('product_prices').upsert({variant_id:variantId,currency,price:Number(value),updated_at:new Date().toISOString()},{onConflict:'variant_id,currency'});if(error){msg('Paket tersimpan, tetapi gagal menyimpan harga '+currency+': '+errorText(error),true);return}}}msg('Paket dan harga berhasil disimpan.');resetVariant();await refreshAll()};
-async function loadOrders(){try{const data=await fetchTable('orders');$('ordersList').innerHTML=data.length?data.map(o=>`<div class="item"><h3>${escapeHtml(o.order_number)} <span class="pill">${escapeHtml(o.status)}</span></h3><p>${escapeHtml(o.product_name)} · ${escapeHtml(o.currency)} ${Number(o.total_price).toLocaleString('id-ID')}</p><p class="muted">${escapeHtml(o.customer_name||'Pelanggan')} · ${escapeHtml(o.created_at)}</p></div>`).join(''):'Belum ada pesanan.'}catch(e){msg('Gagal membaca pesanan: '+errorText(e),true)}}
+$('variantForm').onsubmit=async e=>{
+ e.preventDefault();const id=$('variantId').value,row={product_id:$('variantProduct').value,name:$('variantName').value.trim(),account_type:$('variantAccount').value.trim()||null,access_type:$('variantAccess').value.trim()||null,duration_label:$('variantDuration').value.trim()||null,warranty:$('variantWarranty').value.trim()||null,description:$('variantDescription').value.trim()||null,sort_order:Number($('variantOrder').value||0),is_active:$('variantActive').value==='true',cost_price_idr:$('variantCostIdr').value===''?null:Number($('variantCostIdr').value),cost_price_myr:$('variantCostMyr').value===''?null:Number($('variantCostMyr').value),updated_at:new Date().toISOString()};
+ let vid=id;if(id){const {error}=await db.from('product_variants').update(row).eq('id',id);if(error){msg(error.message,true);return}}else{const {data,error}=await db.from('product_variants').insert(row).select('id').single();if(error){msg(error.message,true);return}vid=data.id}
+ for(const [currency,priceField] of [['IDR','variantIdr'],['MYR','variantMyr']]){const value=$(priceField).value.trim();if(value===''){const {error}=await db.from('product_prices').delete().eq('variant_id',vid).eq('currency',currency);if(error){msg(error.message,true);return}}else{const {error}=await db.from('product_prices').upsert({variant_id:vid,currency,price:Number(value),updated_at:new Date().toISOString()},{onConflict:'variant_id,currency'});if(error){msg(error.message,true);return}}}
+ msg('Paket, harga jual, dan modal berhasil disimpan.');resetVariant();await refreshAll();
+};
+$('variantsList').onclick=async e=>{const ed=e.target.closest('[data-edit-variant]'),del=e.target.closest('[data-del-variant]');if(ed){const v=variants.find(x=>x.id===ed.dataset.editVariant);$('variantId').value=v.id;$('variantProduct').value=v.product_id;$('variantName').value=v.name;$('variantAccount').value=v.account_type||'';$('variantAccess').value=v.access_type||'';$('variantDuration').value=v.duration_label||'';$('variantWarranty').value=v.warranty||'';$('variantDescription').value=v.description||'';$('variantOrder').value=v.sort_order||0;$('variantActive').value=String(v.is_active);$('variantCostIdr').value=v.cost_price_idr??'';$('variantCostMyr').value=v.cost_price_myr??'';$('variantIdr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='IDR')?.price??'';$('variantMyr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='MYR')?.price??'';$('variantHeading').textContent='Edit Paket APK';$('variantForm').scrollIntoView({behavior:'smooth'})}if(del&&confirm('Hapus paket ini?')){const {error}=await db.from('product_variants').delete().eq('id',del.dataset.delVariant);if(error)msg(error.message,true);else await refreshAll()}};
 </script>
 </body>
 </html>
