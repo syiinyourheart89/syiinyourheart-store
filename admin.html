@@ -52,6 +52,7 @@ small.help{font:11px/1.4 Arial,sans-serif;color:var(--muted)}#message{font:13px 
     <nav>
       <button class="selected" data-tab="overview">Ringkasan</button>
       <button data-tab="robux">Kelola Robux</button>
+      <button data-tab="accounts">Akun Plus & Reset</button>
       <button data-tab="apk">Kelola APK Premium</button>
       <button data-tab="finance">Keuangan</button>
       <button data-tab="customers">Top Pelanggan</button>
@@ -83,9 +84,9 @@ small.help{font:11px/1.4 Arial,sans-serif;color:var(--muted)}#message{font:13px 
         <h3 style="margin-top:20px">Modal Robux</h3>
         <div class="grid">
           <div><label>Rate beli dari supplier</label><input id="buyRate" type="number" min="0" step="0.0001" required></div>
-          <div><label>Alokasi biaya Roblox Plus per transaksi (Rp)</label><input id="plusCost" type="number" min="0" step="0.01" required></div>
+          <div><label>Biaya Roblox Plus per bulan untuk satu akun (Rp)</label><input id="plusCost" type="number" min="0" step="0.01" required></div>
         </div>
-        <p class="notice">Biaya Roblox Plus harus diisi sebagai alokasi per transaksi. Jika biaya aslinya bulanan, hitung dahulu alokasi yang ingin dibebankan per order. Jangan memasukkan angka perkiraan tanpa memastikan satuannya.</p>
+        <p class="notice">Biaya langganan bulanan per akun. Biaya ini tidak ditambahkan ke setiap transaksi Robux.</p>
         <button type="submit">Simpan Pengaturan Robux</button>
       </form>
     </div>
@@ -109,6 +110,42 @@ small.help{font:11px/1.4 Arial,sans-serif;color:var(--muted)}#message{font:13px 
       </div>
       <p><b>Estimasi harga jual: <span id="robuxCalcPrice">Rp0</span></b></p>
       <p class="muted">Simulasi ini hanya menghitung harga berdasarkan rate yang disimpan; belum membuat pesanan.</p>
+    </div>
+  </section>
+
+
+  <section id="tab-accounts" class="hide">
+    <div class="card">
+      <div class="section-head">Daftar Akun Roblox Plus</div>
+      <p class="muted">Setiap akun memiliki kuota pengiriman maksimal 10.000 Robux per siklus. Siklus dimulai dari tanggal pengiriman pertama, lalu reset satu bulan kalender setelahnya.</p>
+      <form id="accountForm">
+        <input type="hidden" id="accountId">
+        <div class="grid">
+          <div><label>Nama akun / username Roblox</label><input id="accountName" required placeholder="Contoh: akun-robux-01"></div>
+          <div><label>Status akun</label><select id="accountStatus"><option value="available">Tersedia</option><option value="in_use">Sedang digunakan</option><option value="renewal_due">Perlu perpanjangan</option><option value="inactive">Nonaktif</option></select></div>
+          <div><label>Tanggal mulai Roblox Plus</label><input id="plusStart" type="date" required></div>
+          <div><label>Tanggal berakhir Roblox Plus</label><input id="plusEnd" type="date" required></div>
+          <div><label>Biaya Roblox Plus per bulan (Rp)</label><input id="accountMonthlyCost" type="number" min="0" step="1" value="95000" required></div>
+          <div><label>Catatan akun (opsional)</label><input id="accountNotes" placeholder="Catatan internal"></div>
+        </div>
+        <p class="toolbar"><button type="submit">Simpan Akun</button><button type="button" id="resetAccount" class="secondary">Bersihkan</button></p>
+      </form>
+      <div id="accountsList"></div>
+    </div>
+    <div class="card">
+      <div class="section-head">Catat Pengiriman Robux & Tanggal Reset</div>
+      <p class="muted">Pilih akun yang masih memiliki kuota, masukkan nominal pengiriman. Kuota terpakai dihitung otomatis. Contoh: pengiriman pertama 1 November → reset 1 Desember.</p>
+      <form id="dispatchForm">
+        <div class="grid">
+          <div><label>Akun Roblox Plus yang digunakan</label><select id="dispatchAccount" required></select></div>
+          <div><label>Username pelanggan</label><input id="dispatchCustomer" required placeholder="Username Roblox pelanggan"></div>
+          <div><label>Nominal Robux</label><input id="dispatchAmount" type="number" min="1" step="1" required></div>
+          <div><label>Tanggal pengiriman</label><input id="dispatchDate" type="date" required></div>
+        </div>
+        <div id="dispatchQuotaInfo" class="notice">Pilih akun untuk melihat kuota terpakai, sisa kuota, dan tanggal reset.</div>
+        <p><button type="submit">Simpan Riwayat Pengiriman</button></p>
+      </form>
+      <div id="dispatchList"></div>
     </div>
   </section>
 
@@ -180,8 +217,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const $=id=>document.getElementById(id), show=(id,yes)=>$(id).classList.toggle('hide',!yes);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>'Rp'+Number(n||0).toLocaleString('id-ID',{maximumFractionDigits:2});
-let db=null,products=[],variants=[],prices=[],categories=[],orders=[];
-let settings={buy_rate:125,plus_cost_per_order:0,sell_rate_small:180,sell_rate_medium:170,sell_rate_large:165.5};
+let db=null,products=[],variants=[],prices=[],categories=[],orders=[],robloxAccounts=[],dispatches=[];
+let settings={buy_rate:125,plus_monthly_cost:95000,sell_rate_small:180,sell_rate_medium:170,sell_rate_large:165.5};
 
 function msg(t,bad=false){$('message').textContent=t;$('message').className=bad?'error':'success'}
 function validConfig(url,key){return /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)&&(/^(sb_publishable_|eyJ)/.test(key))}
@@ -189,12 +226,12 @@ $('connect').onclick=()=>{const url=$('projectUrl').value.trim().replace(/\/$/,'
 $('loginForm').onsubmit=async e=>{e.preventDefault();msg('Memeriksa akun...');const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});$('password').value='';if(error){msg(error.message,true);return}const {data:p,error:pe}=await db.from('admin_profiles').select('id,display_name,role,permissions').eq('id',data.user.id).maybeSingle();if(pe||!p||p.role!=='owner'||p.permissions?.full_access!==true){await db.auth.signOut();msg('Akun ini tidak memiliki akses Owner.',true);return}show('login',false);show('dashboard',true);show('logout',true);$('account').textContent=data.user.email;$('greeting').textContent='Selamat datang, '+(p.display_name||'Owner')+'.';msg('Login berhasil.');await refreshAll()};
 $('logout').onclick=async()=>{await db.auth.signOut();show('dashboard',false);show('logout',false);show('login',true);$('account').textContent='';msg('Berhasil keluar.')};
 
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('selected',x===b));['overview','robux','apk','finance','customers','orders'].forEach(t=>show('tab-'+t,t===b.dataset.tab));if(b.dataset.tab==='finance')renderFinance();if(b.dataset.tab==='customers')renderLeaderboard()});
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('selected',x===b));['overview','robux','accounts','apk','finance','customers','orders'].forEach(t=>show('tab-'+t,t===b.dataset.tab));if(b.dataset.tab==='finance')renderFinance();if(b.dataset.tab==='customers')renderLeaderboard()});
 
 async function getRows(table){const {data,error}=await db.from(table).select('*');if(error)throw error;return data||[]}
 async function refreshAll(){
  try{
-  [categories,products,variants,orders]=await Promise.all([getRows('categories'),getRows('products'),getRows('product_variants'),getRows('orders')]);
+  [categories,products,variants,orders,robloxAccounts,dispatches]=await Promise.all([getRows('categories'),getRows('products'),getRows('product_variants'),getRows('orders'),getRows('roblox_accounts'),getRows('robux_dispatches')]);
   const {data:pr,error}=await db.from('product_prices').select('*');if(error)throw error;prices=pr||[];
   const {data:fs,error:fe}=await db.from('financial_settings').select('*').eq('id',1).maybeSingle();
   if(fe)throw fe;if(fs)settings={...settings,...fs};
@@ -207,9 +244,9 @@ function fillSelects(){
  $('variantProduct').innerHTML='<option value="">Pilih aplikasi</option>'+apk.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
  $('robuxProduct').innerHTML='<option value="">Pilih produk Robux</option>'+robux.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
 }
-function renderAll(){renderSettings();renderRobuxProducts();renderApkProducts();renderVariants();renderOverview();renderFinance();renderLeaderboard();renderOrders()}
+function renderAll(){renderSettings();renderRobuxProducts();renderApkProducts();renderVariants();renderOverview();renderFinance();renderLeaderboard();renderOrders();renderAccounts();renderDispatches()}
 function renderSettings(){
- $('buyRate').value=settings.buy_rate??125;$('plusCost').value=settings.plus_cost_per_order??0;
+ $('buyRate').value=settings.buy_rate??125;$('plusCost').value=settings.plus_monthly_cost??95000;
  $('sellRateSmall').value=settings.sell_rate_small??180;$('sellRateMedium').value=settings.sell_rate_medium??170;$('sellRateLarge').value=settings.sell_rate_large??165.5;
  updateRobuxCalc();
 }
@@ -218,7 +255,7 @@ function updateRobuxCalc(){const q=Number($('robuxCalcQty').value||0),rate=rateF
 $('robuxCalcQty').oninput=updateRobuxCalc;
 $('robuxSettingsForm').onsubmit=async e=>{
  e.preventDefault();
- const row={id:1,buy_rate:Number($('buyRate').value),plus_cost_per_order:Number($('plusCost').value),sell_rate_small:Number($('sellRateSmall').value),sell_rate_medium:Number($('sellRateMedium').value),sell_rate_large:Number($('sellRateLarge').value),updated_at:new Date().toISOString()};
+ const row={id:1,buy_rate:Number($('buyRate').value),plus_monthly_cost:Number($('plusCost').value),sell_rate_small:Number($('sellRateSmall').value),sell_rate_medium:Number($('sellRateMedium').value),sell_rate_large:Number($('sellRateLarge').value),updated_at:new Date().toISOString()};
  const {error}=await db.from('financial_settings').upsert(row,{onConflict:'id'});
  if(error){msg('Gagal menyimpan pengaturan Robux: '+error.message,true);return}settings={...settings,...row};msg('Pengaturan harga dan modal Robux berhasil disimpan.');renderSettings();
 };
@@ -270,11 +307,79 @@ $('variantsList').onclick=async e=>{
  if(edit){const v=variants.find(x=>x.id===edit.dataset.editVariant);$('variantId').value=v.id;$('variantProduct').value=v.product_id;$('variantName').value=v.name;$('variantAccount').value=v.account_type||'';$('variantAccess').value=v.access_type||'';$('variantDuration').value=v.duration_label||'';$('variantWarranty').value=v.warranty||'';$('variantCostIdr').value=v.cost_price_idr??'';$('variantCostMyr').value=v.cost_price_myr??'';$('variantOrder').value=v.sort_order||0;$('variantActive').value=String(v.is_active);$('variantIdr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='IDR')?.price??'';$('variantMyr').value=prices.find(p=>p.variant_id===v.id&&p.currency==='MYR')?.price??'';$('apkVariantForm').scrollIntoView({behavior:'smooth'})}
  if(del&&confirm('Hapus paket ini?')){const {error}=await db.from('product_variants').delete().eq('id',del.dataset.deleteVariant);if(error)msg(error.message,true);else await refreshAll()}
 };
+
+function isoDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function addOneMonth(dateString){
+ const [y,m,d]=dateString.split('-').map(Number);
+ const target=new Date(y,m,1);
+ const targetYear=target.getFullYear(),targetMonth=target.getMonth();
+ const lastDay=new Date(targetYear,targetMonth+1,0).getDate();
+ return isoDate(new Date(targetYear,targetMonth,Math.min(d,lastDay)));
+}
+function resetAccountForm(){$('accountForm').reset();$('accountId').value='';$('accountMonthlyCost').value=95000;$('accountStatus').value='available'}$('resetAccount').onclick=resetAccountForm;
+$('accountForm').onsubmit=async e=>{
+ e.preventDefault();
+ const id=$('accountId').value;
+ const row={account_name:$('accountName').value.trim(),status:$('accountStatus').value,plus_start_date:$('plusStart').value,plus_end_date:$('plusEnd').value,monthly_cost_idr:Number($('accountMonthlyCost').value),notes:$('accountNotes').value.trim()||null,updated_at:new Date().toISOString()};
+ const q=id?db.from('roblox_accounts').update(row).eq('id',id):db.from('roblox_accounts').insert(row);
+ const {error}=await q;if(error){msg('Gagal menyimpan akun: '+error.message,true);return}
+ resetAccountForm();msg('Data akun Roblox Plus tersimpan.');await refreshAll();
+};
+function cycleView(a, atDate=isoDate(new Date())){
+ let start=a.cycle_start_date||null, reset=a.cycle_reset_date||null, used=Number(a.cycle_used||0);
+ if(reset && atDate>=reset){start=null;reset=null;used=0}
+ return {start,reset,used,remaining:Math.max(0,10000-used),full:used>=10000};
+}
+function renderAccounts(){
+ const at=isoDate(new Date());
+ const usable=robloxAccounts.filter(a=>a.status!=='inactive'&&(!a.plus_end_date||a.plus_end_date>=at)&&!cycleView(a,at).full);
+ $('dispatchAccount').innerHTML='<option value="">Pilih akun yang masih tersedia</option>'+usable.map(a=>{const c=cycleView(a,at);return `<option value="${esc(a.id)}">${esc(a.account_name)} — sisa ${c.remaining.toLocaleString('id-ID')} R</option>`}).join('');
+ $('accountsList').innerHTML=robloxAccounts.length?robloxAccounts.map(a=>{
+  const expired=a.plus_end_date&&a.plus_end_date<at,cycle=cycleView(a,at);
+  const badge=expired?'Masa Plus lewat':a.status==='inactive'?'Nonaktif':cycle.full?'Kuota penuh — menunggu reset':({available:'Tersedia',in_use:'Sedang digunakan',renewal_due:'Perlu perpanjangan'}[a.status]||a.status);
+  const pct=Math.min(100,cycle.used/10000*100);
+  return `<div class="item"><h3>${esc(a.account_name)} <span class="pill">${esc(badge)}</span></h3>
+  <p>Plus: ${esc(a.plus_start_date||'-')} sampai ${esc(a.plus_end_date||'-')} · Biaya bulanan ${money(a.monthly_cost_idr)}</p>
+  <p><b>Kuota siklus:</b> ${cycle.used.toLocaleString('id-ID')} / 10.000 R · <b>Sisa:</b> ${cycle.remaining.toLocaleString('id-ID')} R</p>
+  <div style="height:9px;background:#eadcc2;border-radius:8px;overflow:hidden"><div style="height:9px;width:${pct}%;background:#8a6339"></div></div>
+  <p class="muted">Mulai siklus: ${esc(cycle.start||'Belum ada pengiriman')} · Reset: ${esc(cycle.reset||'Dimulai saat pengiriman pertama')}</p>
+  <p class="muted">${esc(a.notes||'')}</p><div class="toolbar"><button class="secondary" data-edit-account="${a.id}">Edit</button><button class="danger" data-delete-account="${a.id}">Hapus</button></div></div>`
+ }).join(''):'Belum ada akun Roblox Plus. Tambahkan akun melalui formulir di atas.';
+ updateDispatchQuotaInfo();
+}
+$('accountsList').onclick=async e=>{
+ const edit=e.target.closest('[data-edit-account]'),del=e.target.closest('[data-delete-account]');
+ if(edit){const a=robloxAccounts.find(x=>x.id===edit.dataset.editAccount);$('accountId').value=a.id;$('accountName').value=a.account_name;$('accountStatus').value=a.status;$('plusStart').value=a.plus_start_date;$('plusEnd').value=a.plus_end_date;$('accountMonthlyCost').value=a.monthly_cost_idr;$('accountNotes').value=a.notes||'';$('accountForm').scrollIntoView({behavior:'smooth'})}
+ if(del&&confirm('Hapus data akun ini? Riwayat pengiriman terkait tidak dapat dihapus jika masih terhubung.')){const {error}=await db.from('roblox_accounts').delete().eq('id',del.dataset.deleteAccount);if(error)msg('Gagal menghapus akun: '+error.message,true);else await refreshAll()}
+};
+$('plusStart').onchange=()=>{if($('plusStart').value)$('plusEnd').value=addOneMonth($('plusStart').value)};
+$('dispatchAccount').onchange=updateDispatchQuotaInfo;
+$('dispatchAmount').oninput=updateDispatchQuotaInfo;
+$('dispatchDate').onchange=updateDispatchQuotaInfo;
+function updateDispatchQuotaInfo(){
+ const a=robloxAccounts.find(x=>x.id===$('dispatchAccount').value);
+ if(!a){$('dispatchQuotaInfo').textContent='Pilih akun untuk melihat kuota terpakai, sisa kuota, dan tanggal reset.';return}
+ const date=$('dispatchDate').value||isoDate(new Date()),c=cycleView(a,date),amount=Number($('dispatchAmount').value||0);
+ $('dispatchQuotaInfo').textContent=`Akun ${a.account_name}: sudah digunakan ${c.used.toLocaleString('id-ID')} R dari 10.000 R. Sisa kuota ${c.remaining.toLocaleString('id-ID')} R. ${c.reset?'Tanggal reset: '+c.reset:'Tanggal reset akan dihitung dari pengiriman pertama.'} ${amount>c.remaining?'Nominal melebihi sisa kuota akun.':''}`;
+}
+$('dispatchForm').onsubmit=async e=>{
+ e.preventDefault();
+ const amount=Number($('dispatchAmount').value),sent=$('dispatchDate').value,accountId=$('dispatchAccount').value;
+ if(!accountId){msg('Pilih akun Roblox terlebih dahulu.',true);return}
+ const {data,error}=await db.rpc('record_robux_dispatch',{p_account_id:accountId,p_customer_username:$('dispatchCustomer').value.trim(),p_robux_amount:amount,p_sent_at:sent});
+ if(error){msg('Pengiriman tidak tersimpan: '+error.message,true);return}
+ msg(`Pengiriman berhasil dicatat. Kuota terpakai ${Number(data.cycle_used).toLocaleString('id-ID')} / 10.000 R. Sisa ${Number(data.remaining).toLocaleString('id-ID')} R. Reset: ${data.reset_date}.`);
+ $('dispatchForm').reset();await refreshAll();
+};
+function renderDispatches(){
+ $('dispatchList').innerHTML=dispatches.length?`<table><thead><tr><th>Akun</th><th>Pelanggan</th><th>Robux</th><th>Tanggal kirim</th><th>Reset siklus</th></tr></thead><tbody>${dispatches.slice().sort((a,b)=>String(b.sent_at).localeCompare(String(a.sent_at))).map(d=>{const a=robloxAccounts.find(x=>x.id===d.account_id);return `<tr><td>${esc(a?.account_name||'-')}</td><td>${esc(d.customer_username)}</td><td>${Number(d.robux_amount).toLocaleString('id-ID')} R</td><td>${esc(d.sent_at)}</td><td>${esc(d.reset_date)}</td></tr>`}).join('')}</tbody></table>`:'Belum ada riwayat pengiriman.';
+}
+
 function isPaid(o){return ['completed','paid','success','selesai'].includes(String(o.status||'').toLowerCase())}
 function orderCost(o){
  if(o.cost_total!=null)return Number(o.cost_total);
  const p=products.find(x=>x.id===o.product_id);
- if(o.product_type==='robux'||p?.product_type==='robux')return Number(o.quantity||0)*Number(settings.buy_rate||0)+Number(settings.plus_cost_per_order||0);
+ if(o.product_type==='robux'||p?.product_type==='robux')return Number(o.quantity||0)*Number(settings.buy_rate||0);
  const v=variants.find(x=>x.id===o.variant_id);
  return Number(v?.cost_price_idr||0)*Number(o.quantity||1);
 }
